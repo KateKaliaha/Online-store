@@ -13,6 +13,7 @@ interface article {
     publishedAt: string;
     content: string;
 }
+
 class News {
     draw(data: article[]) {
         const news: article[] = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
