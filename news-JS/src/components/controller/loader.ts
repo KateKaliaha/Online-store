@@ -1,4 +1,4 @@
-import { Result } from './interfaces';
+import { Result, Errors } from './interfaces';
 
 class Loader {
     baseLink: string;
@@ -20,7 +20,7 @@ class Loader {
 
     errorHandler(res: Result): Result | never {
         if (!res.ok) {
-            if (res.status === 401 || res.status === 404)
+            if (res.status === Errors.ErrorOne || res.status === Errors.ErrorTwo)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
             throw Error(res.statusText);
         }

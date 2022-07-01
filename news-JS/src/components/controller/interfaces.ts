@@ -1,9 +1,9 @@
-export interface Result {
+export type Result = {
     ok: boolean;
     status: number;
     statusText: string;
     json: () => Promise<string>;
-}
+};
 
 export interface article {
     source: {
@@ -36,4 +36,8 @@ export interface source {
 export interface DataSources {
     status: string;
     sources: Array<source>;
+}
+export enum Errors {
+    'ErrorOne' = 401,
+    'ErrorTwo' = 404,
 }
