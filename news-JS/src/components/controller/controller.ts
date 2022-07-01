@@ -1,37 +1,5 @@
 import AppLoader from './appLoader';
-
-interface article {
-    source: {
-        id: string;
-        name: string;
-    };
-    author: string;
-    title: string;
-    description: string;
-    url: string;
-    urlToImage: string;
-    publishedAt: string;
-    content: string;
-}
-interface DataArticle {
-    status: string;
-    totalResults: number;
-    articles: Array<article>;
-}
-
-interface source {
-    id: string;
-    name: string;
-    description: string;
-    url: string;
-    category: string;
-    language: string;
-    country: string;
-}
-interface DataSources {
-    status: string;
-    sources: Array<source>;
-}
+import { DataArticle, DataSources } from './interfaces';
 
 class AppController extends AppLoader {
     getSources(callback: (data: DataSources) => void) {

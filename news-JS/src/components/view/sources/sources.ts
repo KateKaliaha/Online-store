@@ -1,14 +1,5 @@
 import './sources.css';
-
-interface source {
-    id: string;
-    name: string;
-    description: string;
-    url: string;
-    category: string;
-    language: string;
-    country: string;
-}
+import { source } from '../../controller/interfaces';
 
 class Sources {
     draw(data: source[]) {

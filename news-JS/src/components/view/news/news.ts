@@ -1,18 +1,5 @@
 import './news.css';
-
-interface article {
-    source: {
-        id: string;
-        name: string;
-    };
-    author: string;
-    title: string;
-    description: string;
-    url: string;
-    urlToImage: string;
-    publishedAt: string;
-    content: string;
-}
+import { article } from '../../controller/interfaces';
 
 class News {
     draw(data: article[]) {

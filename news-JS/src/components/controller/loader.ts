@@ -1,9 +1,4 @@
-interface Result {
-    ok: boolean;
-    status: number;
-    statusText: string;
-    json: () => Promise<string>;
-}
+import { Result } from './interfaces';
 
 class Loader {
     baseLink: string;
