@@ -1,5 +1,7 @@
 import { Result, Errors } from './interfaces';
 
+type ResultPreview = Pick<Result, 'ok' | 'status' | 'statusText'>;
+
 class Loader {
     baseLink: string;
     options: Record<string, string>;
@@ -18,7 +20,7 @@ class Loader {
         void this.load('GET', endpoint, callback, options);
     }
 
-    private errorHandler(res: Result): Result | never {
+    private errorHandler(res: Readonly<Result>): ResultPreview | never {
         if (!res.ok) {
             if (res.status === Errors.ErrorOne || res.status === Errors.ErrorTwo)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);

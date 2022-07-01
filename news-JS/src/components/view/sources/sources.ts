@@ -2,7 +2,7 @@ import './sources.css';
 import { source } from '../../controller/interfaces';
 
 class Sources {
-    public draw(data: source[]): void {
+    public draw(data: Readonly<source[]>): void {
         const fragment = document.createDocumentFragment();
         const sourceItemTemp = document.querySelector('#sourceItemTemp');
 
