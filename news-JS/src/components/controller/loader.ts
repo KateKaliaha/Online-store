@@ -14,9 +14,9 @@ class Loader {
         this.options = options;
     }
 
-    getResp(
+    getResp<T>(
         { endpoint, options = {} }: { endpoint: string; options?: Record<string, string> },
-        callback: <T>(data: T) => void = () => {
+        callback: (data: T) => void = (): void => {
             console.error('No callback for GET response');
         }
     ) {
@@ -43,22 +43,11 @@ class Loader {
 
         return url.slice(0, -1);
     }
-
-    // async load(method: string, endpoint: string, callback: <T>(data: T) => void, options = {}) {
-    //     try {
-    //         const res = await fetch(this.makeUrl(options, endpoint), { method });
-    //         const res_1 = this.errorHandler(res);
-    //         const data_1 = await res_1.json();
-    //         return callback(data_1);
-    //     } catch (err) {
-    //         return console.error(err);
-    //     }
-    // }
-    load(method: string, endpoint: string, callback: <T>(data: T) => void, options = {}) {
+    load<T>(method: string, endpoint: string, callback: (data: T) => void, options = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then((res) => this.errorHandler(res))
-            .then((res) => res.json())
-            .then((data) => callback(data))
+            .then((res) => (<Response>res).json())
+            .then((data: T) => callback(data))
             .catch((err) => console.error(err));
     }
 }
