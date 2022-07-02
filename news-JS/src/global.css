@@ -1,11 +1,27 @@
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  max-width: 1920px;
+}
+
 body {
     color: #fff;
     background: #17181c;
     font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    margin: 0;
+    height:100vh;
+}
+main {
+  flex: 1 0 auto;
 }
 
 header {
     padding: 10px 30px;
+    height: 20%;
 }
 
 header h1 {
@@ -14,10 +30,11 @@ header h1 {
 }
 
 footer {
-    height: 100px;
+  height: 20%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    flex: 0 0 auto;
 }
 footer .copyright {
     font-size: 14px;
@@ -25,6 +42,7 @@ footer .copyright {
     text-align: center;
 }
 footer .copyright a {
+  display: inline-block;
     color: #444;
 }
 footer .copyright a:hover {
@@ -32,4 +50,42 @@ footer .copyright a:hover {
 }
 footer .copyright:before {
     content: '©';
+}
+
+footer .year {
+  font-size: 14px;
+  text-align: center;
+}
+
+footer .github-link {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background: url('./assets/git.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(21deg) brightness(97%) contrast(103%);
+}
+
+footer .rss-logo {
+  display: inline-block;
+  width: 80px;
+  height: 20px;
+  background: url('./assets/rss.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.rss-logo:hover,
+.github-link:hover,
+.copyright a:hover {
+  filter: invert(22%) sepia(2%) saturate(0%) hue-rotate(8deg) brightness(102%) contrast(86%);
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
 }

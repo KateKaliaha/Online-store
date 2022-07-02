@@ -14,10 +14,14 @@ const baseConfig = {
                 use: ['style-loader', 'css-loader'],
             },
             {
-              test: /\.ts$/i,
-              use: ['ts-loader'],
-              exclude: /node_modules/,
+              test: /\.(png|jpg|svg|gif)$/,
+              use: ['file-loader']
           },
+          {
+            test: /\.ts$/i,
+            use: ['ts-loader'],
+            exclude: /node_modules/,
+        },
         ],
     },
     resolve: {
