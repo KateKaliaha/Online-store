@@ -5,6 +5,7 @@
   max-width: 1920px;
 }
 
+html,
 body {
     color: #fff;
     background: #17181c;
@@ -13,10 +14,16 @@ body {
     flex-direction: column;
     /* justify-content: space-between; */
     margin: 0;
-    height:100vh;
+    height:100%;
+}
+
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 main {
-  flex: 1 0 auto;
+  flex: 1 1 auto;
 }
 
 header {
@@ -30,7 +37,6 @@ header h1 {
 }
 
 footer {
-  height: 20%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -83,9 +89,4 @@ footer .rss-logo {
   filter: invert(22%) sepia(2%) saturate(0%) hue-rotate(8deg) brightness(102%) contrast(86%);
   transform: scale(1.1);
   transition: 0.3s;
-}
-
-.buttons {
-  display: flex;
-  flex-wrap: wrap;
 }

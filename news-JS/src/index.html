@@ -7,13 +7,41 @@
         <title>NewsPortal</title>
     </head>
     <body>
+      <div class="wrapper">
         <header>
             <h1>News Portal</h1>
         </header>
+
         <main class="main">
-            <div class="sources buttons"></div>
-            <div class="news"></div>
+         <div class="sources buttons">
+           <div class="dropdown ">
+          <button class="dropbtn">General</button>
+           <div id="myDropdown" class="general dropdown-content"></div>
+          </div>
+           <div class="dropdown ">
+           <button class="dropbtn">Business</button>
+           <div class="business dropdown-content"></div>
+          </div>
+           <div class="dropdown ">
+           <button class="dropbtn">Technology</button>
+           <div class="technology dropdown-content"></div>
+          </div>
+           <div class="dropdown ">
+           <button class="dropbtn">Sports</button>
+           <div class="sports dropdown-content"></div>
+          </div>
+           <div class="dropdown ">
+           <button class="dropbtn">Entertainment</button>
+           <div class="entertainment dropdown-content"></div>
+          </div>
+           <div class="dropdown ">
+           <button class="dropbtn">Health and Science</button>
+           <div class="health-science dropdown-content"></div>
+          </div>
+         </div>
+         <div class="news"></div>
         </main>
+
         <footer>
             <p class="copyright">
                 Copyright <a href="https://newsapi.org">NewsAPI</a>
@@ -49,6 +77,6 @@
             </div>
         </template>
 
-        <!-- <script src="./index.js"></script> -->
+      </div>
     </body>
 </html>
