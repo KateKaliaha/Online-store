@@ -3,6 +3,7 @@ const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
 
 const baseConfig = {
     entry: path.resolve(__dirname, './src/index.ts'),
@@ -14,7 +15,7 @@ const baseConfig = {
                 use: ['style-loader', 'css-loader'],
             },
             {
-              test: /\.(png|jpg|svg|gif)$/,
+              test: /\.(png|jpg|jpeg|svg|gif)$/,
               use: ['file-loader']
           },
           {
@@ -42,7 +43,12 @@ const baseConfig = {
             context: path.resolve(__dirname, 'src'),
             extensions: ['ts', 'tsx', 'js', 'jsx', '.test.tsx', '.stories.tsx'],
             overrideConfigFile: path.resolve(__dirname, '.eslintrc.json')
-          })
+          }),
+          new CopyPlugin({
+            patterns: [
+              { from: path.resolve(__dirname, 'src/assets/git.png'), to: path.resolve(__dirname, 'dist/') },
+            ],
+          }),
     ],
 
 };

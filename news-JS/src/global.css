@@ -41,6 +41,7 @@ footer {
     align-items: center;
     justify-content: space-between;
     flex: 0 0 auto;
+    padding: 0 5px 0 5px;
 }
 footer .copyright {
     font-size: 14px;
