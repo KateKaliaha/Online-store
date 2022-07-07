@@ -30,7 +30,7 @@ module.exports = {
     },
   //   {
   //     test: /\.(png|jpe?g|svg|gif)$/,
-  //     use: ['file-loader'],
+  //     type: './assets/img/'
   // },
   {
     test: /\.(ttf|woff2?|eot)$/,
