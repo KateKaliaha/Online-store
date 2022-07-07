@@ -3,6 +3,7 @@ const HTMLWebpackPlugin = require ('html-webpack-plugin');
 const {CleanWebpackPlugin} = require ('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+// const bootstrap = require ('bootstrap');
 
 module.exports = {
   entry: path.resolve(__dirname, './src/index.ts'),
@@ -11,7 +12,10 @@ module.exports = {
     path: path.resolve(__dirname, './dist')
   },
   devServer: {
-    port: 4200
+    port: 4200,
+    open: true,
+    compress: true,
+    hot: true
   },
   module: {
     rules: [
@@ -24,10 +28,10 @@ module.exports = {
         use: ['ts-loader'],
         exclude: /node_modules/,
     },
-    {
-      test: /\.(png|jpe?g|svg|gif)$/,
-      use: ['file-loader'],
-  },
+  //   {
+  //     test: /\.(png|jpe?g|svg|gif)$/,
+  //     use: ['file-loader'],
+  // },
   {
     test: /\.(ttf|woff2?|eot)$/,
     use: ['file-loader'],
