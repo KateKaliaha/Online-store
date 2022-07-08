@@ -56,3 +56,16 @@ input[type=checkbox]:checked + .pseudocheckbox::before {
 input[type=checkbox]:checked + span {
   font-weight: bold;
 }
+
+#q {
+  width: 300px;
+  height: 30px;
+  border: 2px solid #541663;
+  border-radius: 7px;
+}
+
+input::-webkit-input-placeholder {
+  color: #541663; 
+  font-style: italic; 
+}
+

@@ -54,6 +54,10 @@ h3 {
   width: 40px;
 }
 
+.main-container.wrapper {
+  flex-direction: column;
+  align-items: flex-start;
+}
 .footer {
   background: rgb(224,174,238);
   background: radial-gradient(circle, rgba(224,174,238,1) 0%, rgba(148,154,233,1) 100%);
