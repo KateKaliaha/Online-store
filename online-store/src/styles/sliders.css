@@ -1,0 +1,75 @@
+@import url('nouislider/dist/nouislider.css');
+
+.filter-slider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.filter-slider h3 {
+  align-self: flex-start;
+  font-size: 20px;
+}
+.slider-wrapper {
+ /* padding: 3px; */
+  margin: 10px 0px;
+  width: 200px;
+}
+
+.label-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 5px 5px 0px;
+}
+.slider-wrapper label {
+  display: block;
+}
+.slider-wrapper input {
+  display: block;
+  width: 50px;
+  font-size: 18px;
+  text-align: center;
+  margin: 0;
+  border: 2px solid #541663;
+  border-radius: 20%;
+}
+
+.slider-wrapper .price-input {
+  width: 80px;
+}
+.noUi-target {
+  background: #9e74a8;
+  border: none;
+  border-radius: 20px;
+  box-shadow: none;
+  height: 5px;
+}
+
+.noUi-connect {
+  background: #541663;
+}
+
+.noUi-handle::after,
+.noUi-handle::before {
+display: none;
+}
+
+.noUi-handle {
+  box-shadow: none;
+  border: 2px solid #541663;
+  border-radius: 100%;
+  background-color: #9e74a8;
+}
+
+.noUi-horizontal .noUi-handle {
+  width: 15px;
+  height: 15px;
+  top: -5px;
+}
+
+/* .noUi-horizontal .noUi-handle-upper {
+  right: 0;
+} */
+
+.noUi-horizontal .noUi-handle {
+  right: -5px;
+}

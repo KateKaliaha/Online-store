@@ -1,6 +1,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+@import './styles/filters.css';
+@import './styles/sliders.css';
 * {
   box-sizing: border-box;
 }
@@ -17,6 +19,9 @@ body {
 }
 main {
   flex: 1 1 auto;
+}
+h3 {
+  margin: 10px 0;
 }
 .header {
   background: rgb(224,174,238);
@@ -57,8 +62,6 @@ main {
 
 .footer-container {
   justify-content: space-between;
-
-  /* padding: 0 5px 0 5px; */
 }
 
 .footer-year {
@@ -71,30 +74,26 @@ font-weight: bold;
 display: inline-block;
 width: 30px;
 height: 30px;
-/* background: url('./assets/img/git.png'); */
 background-size: contain;
 background-repeat: no-repeat;
 border-radius: 50%;
-/* filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(21deg) brightness(97%) contrast(103%); */
 }
 
 .rss-logo {
   display: inline-block;
   width: 80px;
-
-/* height: 20px; */
-/* background: url('./assets/img/rss.svg'); */
-/* background-size: contain;
-background-repeat: no-repeat; */
 }
+
 .github-link {
   width: 50px;
   display: inline-block;
 }
+
 .footer-img {
   display: inline-block;
   width: 80px;
 }
+
 .img-github {
   width: 50px;
   border-radius: 50px;

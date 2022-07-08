@@ -1,0 +1,58 @@
+.filter {
+  max-width: 250px;
+}
+
+.section {
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+}
+.section span {
+text-align: center;
+font-size: 18px;
+}
+
+.filter-popular {
+  flex-direction: row;
+}
+
+.filter-popular label {
+  font-size: 20px;
+  margin-top: 0px;
+}
+
+label {
+  margin-top: 5px;
+}
+input[type=checkbox] {
+  display: none;
+}
+
+.pseudocheckbox::before {
+  content: "\00A0";
+  display: inline-block;
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border: 2px solid #541663;
+  border-radius: 2px;
+  margin-right: 6px;
+  vertical-align: baseline;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  line-height: 16px;
+  color:#541663;
+}
+.section .popular{
+  font-size: 21px;
+  font-weight: bold;
+}
+input[type=checkbox]:checked + .pseudocheckbox::before {
+  content: "\2713";
+}
+input[type=checkbox]:checked + span {
+  font-weight: bold;
+}

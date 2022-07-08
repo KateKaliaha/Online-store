@@ -15,7 +15,136 @@
           <img src="./assets/basket.png" class="header-basket" alt="Basket for goods">
       </div>
   </header>
-  <main></main>
+  <main>
+    <div class="main-container wrapper">
+      <aside class="filter">
+        <section class="filter-production section">
+          <h3>Производитель:</h3>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="production" value="Halmar">
+              <span class="pseudocheckbox">Halmar</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="production" value="AksHome">
+            <span class="pseudocheckbox">AksHome</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="production" value="Divan">
+            <span class="pseudocheckbox">Divan</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="production" value="Brioli">
+            <span class="pseudocheckbox">Brioli</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="production" value="Signal">
+            <span class="pseudocheckbox">Signal</span>
+            </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="production" value="Mebel-apc">
+            <span class="pseudocheckbox">Мебель-АРС</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="production" value="Mebel-impeks">
+            <span class="pseudocheckbox">Мебель Импэкс</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="production" value="Stool-group">
+            <span class="pseudocheckbox">Stool Group</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="production" value="TetChair">
+            <span class="pseudocheckbox">TetChair</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="production" value="Mebelico">
+            <span class="pseudocheckbox">Mebelico</span>
+          </label>
+        </section>
+        <section class="filter-color section"> 
+          <h3>Цвет:</h3>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="color" value="Green">
+            <span class="pseudocheckbox">Зеленый</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="color" value="Yellow">
+            <span class="pseudocheckbox">Желтый</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="color" value="Grey">
+            <span class="pseudocheckbox">Серый</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="color" value="Red">
+            <span class="pseudocheckbox">Красный</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="color" value="Brown">
+            <span class="pseudocheckbox">Коричневый</span>
+            </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="color" value="Blue">
+            <span class="pseudocheckbox">Синий</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="color" value="Beige">
+            <span class="pseudocheckbox">Бежевый</span>
+          </label>
+        </section>
+        <section class="filter-type section">
+          <h3> Тип:</h3>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="type" value="Rocking-chair">
+            <span class="pseudocheckbox">Кресло-качалка</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="type" value="Armchair-sofa">
+            <span class="pseudocheckbox">Кресло-диван</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="type" value="Chair-simple">
+            <span class="pseudocheckbox">Интерьерное кресло</span>
+          </label>
+        </section>
+        <section class="filter-popular section">
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="popular" value="Popular">
+            <span class="pseudocheckbox popular">Только популярные</span>
+          </label>
+        </section>
+        <section class="filter-slider section">
+          <h3> Количество на складе:</h3>
+          <div class="slider-wrapper">
+            <div id="slider"></div>
+            <div class="label-wrapper">
+              <label>
+                <input type="number" min="1" id="input-0" disabled>
+              </label>
+              <label>
+                <input type="number" max="15" id="input-1" disabled>
+              </label>
+            </div>
+          </div>
+        </section>
+        <section class="filter-slider section">
+          <h3> Стоимость:</h3>
+          <div class="slider-wrapper">
+            <div id="slider1"></div>
+            <div class="label-wrapper">
+              <label>
+                <input class="price-input" type="number" min="100" id="input-2" disabled>
+              </label>
+              <label>
+                <input class="price-input" type="number" max="1500" id="input-3" disabled>
+              </label>
+            </div>
+          </div>
+        </section>
+      </aside>
+    </div>
+
+  </main>
   <footer class="footer">
     <div class="footer-container wrapper">
       <p class="footer-year">2022</p>
