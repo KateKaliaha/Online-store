@@ -29,13 +29,19 @@ module.exports = {
         exclude: /node_modules/,
     },
   //   {
-  //     test: /\.(png|jpe?g|svg|gif)$/,
-  //     type: './assets/img/'
+  //       test: /\.(png|jpe?g|gif)$/i,
+  //       loader: 'file-loader',
+  //       options: {
+  //         outputPath: 'assets/img',
+  //         name: '[name].[ext]',
+  //       },
+    
   // },
   {
     test: /\.(ttf|woff2?|eot)$/,
     use: ['file-loader'],
 },
+
     ]
   },
   resolve: {
@@ -50,7 +56,8 @@ module.exports = {
     new CleanWebpackPlugin(),
     new CopyPlugin({
       patterns: [
-        { from: path.resolve(__dirname, 'src/assets/img/'), to: path.resolve(__dirname, 'dist/assets') },
+        // { from: path.resolve(__dirname, 'src/assets/'), to: path.resolve(__dirname, 'dist/assets/') },
+        { from: 'src/assets', to: 'assets' },
         { from: path.resolve(__dirname, 'src/assets/favicon.ico'), to: path.resolve(__dirname, 'dist/') }
       ],
     }),

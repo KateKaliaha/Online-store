@@ -4,21 +4,27 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
   <title>Online Store</title>
 </head>
 <body>
   <header class="header">
       <div class="header-container wrapper">
-          <img src="./assets/logo.png" class="header-logo" alt="Logo for online-shop">
+          <img src="./assets/img/logo.png" class="header-logo" alt="Logo for online-shop">
           <h1 class="header-title">Cozy home</h1>
-          <img src="./assets/basket.png" class="header-basket" alt="Basket for goods">
+          <img src="./assets/img/basket.png" class="header-basket" alt="Basket for goods">
       </div>
   </header>
   <main>
     <div class="main-container wrapper">
       <section class="search-filter">
-        <input type="search" name="search-place" id="q"  placeholder="Search the site..." autofocus autocomplete="off">
+          <input type="search" name="search-place" id="q"  placeholder="Search the site..." autofocus autocomplete="off">
+          <select name="sort-list" class="sort-list">
+            <option value="Alphabet1">По названию, A-Z</option>
+            <option value="Alphabet2">По названию, Z-A</option>
+            <option value="Price1">По цене, самая низкая</option>
+            <option value="Price2">По цене, самая высокая</option>
+          </select>
       </section>
       <aside class="filter">
         <section class="filter-production section">
@@ -144,18 +150,21 @@
             </div>
           </div>
         </section>
+        <section class="buttons section">
+          <button class="reset-filters btn">Сброс фильтров</button>
+          <button class="reset-all btn">Сброс настроек</button>
+        </section>
       </aside>
     </div>
-
   </main>
   <footer class="footer">
     <div class="footer-container wrapper">
       <p class="footer-year">2022</p>
       <p class="footer-link"><a class="github-link" href="https://github.com/katekaliaha" target="_blank">
-        <img src="./assets/git.png" class="footer-img img-github" alt="Logo github">
+        <img src="./assets/img/git.png" class="footer-img img-github" alt="Logo github">
       </a></p>
       <p class = "footer-logo"><a class="rss-logo" href="https://rs.school/js/" target="_blank">
-        <img src="./assets/rss.svg" class="footer-img img-rss" alt="Logo RS School">
+        <img src="./assets/img/rss.svg" class="footer-img img-rss" alt="Logo RS School">
       </a></p>
     </div>
   </footer>

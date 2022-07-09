@@ -56,12 +56,18 @@ input[type=checkbox]:checked + .pseudocheckbox::before {
 input[type=checkbox]:checked + span {
   font-weight: bold;
 }
+.search-filter {
+width: 100%;
+display: flex;
+justify-content: space-between;
+}
 
 #q {
   width: 300px;
   height: 30px;
   border: 2px solid #541663;
   border-radius: 7px;
+  font-size: 20px;
 }
 
 input::-webkit-input-placeholder {
@@ -69,3 +75,44 @@ input::-webkit-input-placeholder {
   font-style: italic; 
 }
 
+.sort-list {
+  width: 300px;
+  height: 30px;
+  border: 2px solid #541663;
+  border-radius: 7px;
+  font-size: 20px;
+}
+.sort-list:hover {
+ border-color: #541663
+}
+.sort-list:focus,
+#q:focus { 
+  border-color: #541663; 
+  box-shadow: 0 0 1px 1px #541663;
+  outline: none; 
+ }
+ .buttons {
+   align-items: center;
+   justify-content: center;
+ }
+
+ .btn {
+   width: 150px;
+   height: 50px;
+   border-radius: 20px;
+   border: 2px solid #541663;
+   transition-duration: 0.4s;
+   background-color: white;
+   margin-top: 10px;
+   font-size: 18px;
+   font-weight: bold;
+   cursor: pointer;
+ }
+ .btn:hover {
+  background-color:  #9e74a8;
+  color: white;
+}
+.btn:active {
+  transition: 0.3s;
+  transform: scale(1.2);
+}
