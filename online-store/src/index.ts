@@ -17,6 +17,7 @@ for (let i = 0; i < goods.length; i++) {
   <p>стоимость: ${goods[i].price} BYN</p>
   <p>${goods[i].type}, сиденье: ${goods[i].seat}, каркас: ${goods[i].frame}</p>
   <p>цвет: ${goods[i].color}</p>
+  <p>остаток на складе: ${goods[i].quality}шт.</p>
   <p class="popular-good"></p>
   </div>
    <div class="good-btn-wrapper">

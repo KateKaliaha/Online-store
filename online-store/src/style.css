@@ -4,6 +4,7 @@
 @import './styles/filters.css';
 @import './styles/sliders.css';
 @import './styles/goods.css';
+
 * {
   box-sizing: border-box;
 }
@@ -62,9 +63,7 @@ h3 {
 .content-wrapper {
   display: flex;
 }
-.content {
 
-}
 .footer {
   background: rgb(224,174,238);
   background: radial-gradient(circle, rgba(224,174,238,1) 0%, rgba(148,154,233,1) 100%);

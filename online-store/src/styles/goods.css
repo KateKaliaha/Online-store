@@ -20,7 +20,10 @@ margin: 15px 10px 20px 10px;
   border-radius: 10px;
   padding-top: 15px;
 }
-
+.card p {
+  margin: 0;
+  margin: 10px 0;
+}
 .good-picture {
   height: 174px;
 }
