@@ -8,11 +8,13 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 module.exports = {
   entry: path.resolve(__dirname, './src/index.ts'),
   output: {
+    path: path.resolve(__dirname, './dist'),
     filename: 'bundle.js',
-    path: path.resolve(__dirname, './dist')
-  },
+    assetModuleFilename: 'assets/[hash][ext][query]',
+    clean: true,
+},
   devServer: {
-    port: 4200,
+    port: 4000,
     open: true,
     compress: true,
     hot: true
@@ -28,20 +30,10 @@ module.exports = {
         use: ['ts-loader'],
         exclude: /node_modules/,
     },
-  //   {
-  //       test: /\.(png|jpe?g|gif)$/i,
-  //       loader: 'file-loader',
-  //       options: {
-  //         outputPath: 'assets/img',
-  //         name: '[name].[ext]',
-  //       },
-    
-  // },
   {
     test: /\.(ttf|woff2?|eot)$/,
     use: ['file-loader'],
 },
-
     ]
   },
   resolve: {

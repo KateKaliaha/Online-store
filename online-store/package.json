@@ -6,8 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack",
-    "eslint": "eslint",
-    "prettier": "prettier"
+    "eslint": "eslint"
   },
   "author": "",
   "license": "ISC",

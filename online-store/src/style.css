@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
 @import './styles/filters.css';
 @import './styles/sliders.css';
+@import './styles/goods.css';
 * {
   box-sizing: border-box;
 }
@@ -57,6 +58,12 @@ h3 {
 .main-container.wrapper {
   flex-direction: column;
   align-items: flex-start;
+}
+.content-wrapper {
+  display: flex;
+}
+.content {
+
 }
 .footer {
   background: rgb(224,174,238);
