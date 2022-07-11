@@ -1,5 +1,6 @@
 const input= document.getElementById('q') as HTMLInputElement;
-
+const phrase = document.querySelector('.phrase') as HTMLBaseElement;
+const contentCard = document.querySelector('.content') as HTMLBaseElement;
 const filterSearch = function (): void {
   input?.addEventListener('keyup', () => onSearch());
   input?.addEventListener('click', () => {
@@ -15,6 +16,8 @@ function onClear() {
     filterElement.forEach((el) => {
       const content = el.closest('.card') as HTMLBaseElement;
       content.style.display = '';
+      phrase.style.display = 'none';
+      contentCard.style.display = '';
     });
   }
 }
@@ -26,8 +29,12 @@ function onClear() {
     const content = el.closest('.card') as HTMLBaseElement;
     if (el.innerHTML.toLocaleLowerCase().indexOf(filter) > -1 ) {
       content.style.display = '';
+      phrase.style.display = 'none';
+      contentCard.style.display = '';
     } else {
       content.style.display = 'none';
+      phrase.style.display = 'block';
+      contentCard.style.display = 'none';
     }
   });
  }
