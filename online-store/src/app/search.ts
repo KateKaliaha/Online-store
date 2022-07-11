@@ -1,7 +1,6 @@
-// const filterElement = document.querySelectorAll('.card h3');
 const input= document.getElementById('q') as HTMLInputElement;
 
-const filter = function (): void {
+const filterSearch = function (): void {
   input?.addEventListener('keyup', () => onSearch());
   input?.addEventListener('click', () => {
     input.addEventListener('search', onClear);
@@ -33,5 +32,4 @@ function onClear() {
   });
  }
 
-
-filter();
+filterSearch();
