@@ -1,5 +1,6 @@
 import './style.css';
 import './app/slider';
+import './app/search';
 import * as Goods from './goods.json';
 
 const goods= Goods.goods;

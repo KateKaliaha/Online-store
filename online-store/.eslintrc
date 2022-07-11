@@ -11,7 +11,7 @@
     ],
     "rules": { 
       "no-debugger": "off",
-      "no-console":1,
+      "no-console": 0,
       "semi": ["error", "always"],
       "quotes": ["error", "single"],
       "class-methods-use-this": "off",
