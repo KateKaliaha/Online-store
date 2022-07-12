@@ -1,9 +1,10 @@
 import './style.css';
 import './app/slider';
 import './app/search';
+import './app/sort';
 import * as Goods from './goods.json';
 
-const goods= Goods.goods;
+const goods= Goods.chairs;
 const content:Element | null = document.querySelector('.content');
 
 
@@ -11,6 +12,8 @@ function createDocument ():void {
 for (let i = 0; i < goods.length; i++) {
   const fragment:HTMLDivElement = document.createElement('div');
   fragment.className = 'card';
+fragment.setAttribute('data-price', `${goods[i].price}`);
+fragment.setAttribute('data-name', `${goods[i].name}`);
   fragment.innerHTML = ` <div class="good-picture"><img class="good-picture-img" src="${goods[i].img}" alt = "Type of chair"></div>
   <div class="good-content">
   <h3 class="good-name">${goods[i].name}</h3>

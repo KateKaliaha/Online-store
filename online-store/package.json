@@ -8,7 +8,7 @@
     "build": "webpack",
     "eslint": "eslint"
   },
-  "author": "",
+  "author": "Katherina Kaliaha",
   "license": "ISC",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.30.5",
