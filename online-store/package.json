@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack",
-    "eslint": "eslint"
+    "eslint": "eslint",
+    "deploy": "gh-pages -d ./dist -e online-store"
   },
   "author": "Katherina Kaliaha",
   "license": "ISC",
@@ -28,6 +29,7 @@
     "webpack-dev-server": "^4.9.3"
   },
   "dependencies": {
+    "gh-pages": "^4.0.0",
     "nouislider": "^15.6.0"
   }
 }

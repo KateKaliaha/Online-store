@@ -10,7 +10,9 @@
       "quality": 10,
       "frame": "металл",
       "img": "./assets/bogema.jpeg",
-      "popular": true
+      "popular": "true",
+      "colorType": "blue",
+      "typeChair": "rocking-chair"
     },
     {
       "name": "Bons-T",
@@ -22,7 +24,9 @@
       "quality": 5,
       "frame": "дерево",
       "img": "./assets/bons-t.jpeg",
-      "popular": false
+      "popular": "false",
+      "colorType": "grey",
+      "typeChair": "armchair-sofa"
     },
     {
       "name": "Smart 72147",
@@ -33,8 +37,10 @@
       "color": "бежевый",
       "quality": 1,
       "frame": "дерево",
-      "img": "./assets/smart.jpeg"
-
+      "img": "./assets/smart.jpeg",
+      "popular":"false",
+      "colorType": "beige",
+      "typeChair": "rocking-chair"
     },
     {
       "name": "Major",
@@ -46,8 +52,9 @@
       "quality": 15,
       "frame": "металл",
       "img": "./assets/major.jpeg",
-      "popular": false
-
+      "popular": "false",
+      "colorType": "green",
+      "typeChair": "rocking-chair"
     },
     {
       "name": "Corfy",
@@ -59,7 +66,9 @@
       "quality": 2,
       "frame": "дерево",
       "img": "./assets/corfy.jpeg",
-      "popular": false
+      "popular": "false",
+      "colorType": "grey",
+      "typeChair": "rocking-chair"
     },
     {
       "name": "Vitio Happy",
@@ -71,7 +80,9 @@
       "quality": 4,
       "frame": "ДСП",
       "img": "./assets/vitio.jpeg",
-      "popular": false
+      "popular": "false",
+      "colorType": "yellow",
+      "typeChair": "rocking-chair"
     },
     {
       "name": "Komfort 11",
@@ -83,7 +94,9 @@
       "quality": 3,
       "frame": "дерево",
       "img": "./assets/komfort.jpeg",
-      "popular": false
+      "popular": "false",
+      "colorType": "green",
+      "typeChair": "rocking-chair"
     },
     {
       "name": "Model 81",
@@ -95,7 +108,9 @@
       "quality": 14,
       "frame": "дерево",
       "img": "./assets/model.jpeg",
-      "popular": false
+      "popular": "false",
+      "colorType": "brown",
+      "typeChair": "chair-simple"
     },
     {
       "name": "Bremo mod.708",
@@ -107,7 +122,9 @@
       "quality": 6,
       "frame": "металл",
       "img": "./assets/bremo.jpeg",
-      "popular": false
+      "popular": "false",
+      "colorType": "beige",
+      "typeChair": "rocking-chair"
     },
     {
       "name": "Columbia",
@@ -119,7 +136,9 @@
       "quality": 7,
       "frame": "металл",
       "img": "./assets/columbia.jpeg",
-      "popular": false
+      "popular": "false",
+      "colorType": "yellow",
+      "typeChair": "rocking-chair"
     },
     {
       "name": "Aniko",
@@ -131,7 +150,9 @@
       "quality": 9,
       "frame": "металл",
       "img": "./assets/aniko.jpeg",
-      "popular": false
+      "popular": "false",
+      "colorType": "green",
+      "typeChair": "rocking-chair"
     },
     {
       "name": "Hocta",
@@ -143,7 +164,9 @@
       "quality": 8,
       "frame": "ДСП",
       "img": "./assets/hocta.jpeg",
-      "popular": false
+      "popular": "false",
+      "colorType": "red",
+      "typeChair": "rocking-chair"
     },
     {
       "name": "Soft",
@@ -155,7 +178,9 @@
       "quality": 11,
       "frame": "дерево",
       "img": "./assets/soft.jpeg",
-      "popular": false
+      "popular": "false",
+      "colorType": "red",
+      "typeChair": "rocking-chair"
     },
     {
       "name": "Clubby 2",
@@ -167,7 +192,9 @@
       "quality": 12,
       "frame": "дерево",
       "img": "./assets/clubby.jpeg",
-      "popular": false
+      "popular": "false",
+      "colorType": "yellow",
+      "typeChair": "rocking-chair"
     },
     {
       "name": "Scandi",
@@ -179,7 +206,9 @@
       "quality": 13,
       "frame": "дерево",
       "img": "./assets/scandi.jpeg",
-      "popular": true
+      "popular": "true",
+      "colorType": "grey",
+      "typeChair": "rocking-chair"
     },
     {
       "name": "Volker",
@@ -191,7 +220,9 @@
       "quality": 3,
       "frame": "металл",
       "img": "./assets/volker.jpeg",
-      "popular": false
+      "popular": "false",
+      "colorType": "grey",
+      "typeChair": "rocking-chair"
     },
     {
       "name": "Colorado 70510",
@@ -203,7 +234,9 @@
       "quality": 9,
       "frame": "металл",
       "img": "./assets/colorado.jpeg",
-      "popular": true
+      "popular": "true",
+      "colorType": "blue",
+      "typeChair": "rocking-chair"
     },
     {
       "name": "Indigo",
@@ -215,7 +248,9 @@
       "quality": 4,
       "frame": "металл",
       "img": "./assets/indigo.jpeg",
-      "popular": false
+      "popular": "false",
+      "colorType": "grey",
+      "typeChair": "chair-simple"
     },
     {
       "name": "Kvartet",
@@ -227,7 +262,9 @@
       "quality": 12,
       "frame": "дерево",
       "img": "./assets/kvartet.jpeg",
-      "popular": false
+      "popular": "false",
+      "colorType": "beige",
+      "typeChair": "armchair-sofa"
       },
     {
       "name": "Magni",
@@ -239,7 +276,9 @@
       "quality": 3,
       "frame": "дерево",
       "img": "./assets/magni.jpeg",
-      "popular": false
+      "popular": "false",
+      "colorType": "green",
+      "typeChair": "rocking-chair"
     },
     {
       "name": "Amur",
@@ -251,7 +290,9 @@
       "quality": 8,
       "frame": "металл",
       "img": "./assets/amur.png",
-      "popular": false
+      "popular": "false",
+      "colorType": "beige",
+      "typeChair": "rocking-chair"
     },
     {
       "name": "Soft 2",
@@ -263,7 +304,9 @@
       "quality": 1,
       "frame": "дерево",
       "img": "./assets/soft2.jpeg",
-      "popular": false
+      "popular": "false",
+      "colorType": "blue",
+      "typeChair": "rocking-chair"
     },
     {
       "name": "Orly",
@@ -275,7 +318,9 @@
       "quality": 15,
       "frame": "металл",
       "img": "./assets/orly.jpeg",
-      "popular": true
+      "popular": "true",
+      "colorType": "green",
+      "typeChair": "rocking-chair"
     },
     {
       "name": "Grand",
@@ -287,7 +332,9 @@
       "quality": 5,
       "frame": "дерево",
       "img": "./assets/grand.jpeg",
-      "popular": false
+      "popular": "false",
+      "colorType": "grey",
+      "typeChair": "chair-simple"
     }
   ]
 

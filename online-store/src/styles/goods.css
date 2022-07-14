@@ -31,6 +31,9 @@
   border-radius: 10px;
   padding-top: 15px;
 }
+.active {
+  display: none;
+}
 .card p {
   margin: 0;
   margin: 10px 0;
