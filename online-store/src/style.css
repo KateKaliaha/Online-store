@@ -26,8 +26,12 @@ h3 {
   margin: 10px 0;
 }
 .header {
+
   background: rgb(224,174,238);
   background: radial-gradient(circle, rgba(224,174,238,1) 0%, rgba(148,154,233,1) 100%);
+}
+.basket {
+  position: relative;
 }
 
 .wrapper {
@@ -51,8 +55,11 @@ h3 {
 
 }
 
-.header-basket {
+.basket {
   margin-left: auto;
+  width: 40px;
+}
+.header-basket {
   width: 40px;
 }
 

@@ -107,6 +107,7 @@ input::-webkit-input-placeholder {
    font-size: 18px;
    font-weight: bold;
    cursor: pointer;
+   margin-bottom: 10px;
  }
  .btn:hover {
   background-color:  #9e74a8;
@@ -115,4 +116,32 @@ input::-webkit-input-placeholder {
 .btn:active {
   transition: 0.3s;
   transform: scale(1.2);
+}
+
+.active-btn {
+  background-color:  #9e74a8;
+  color: white;
+}
+
+.active-btn:hover {
+  background-color: white;
+  color: black;
+}
+
+.basket-counter {
+  position: absolute;
+  top: 25px;
+  left: 14px;
+  background-color: #9e74a8;
+  border: 2px solid #541663;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  opacity: 0.9;
+  display: none;
+  text-align: center;
+  color: #541663;
+  font-weight: bold;
+  font-size: 20px;
+  padding-top: 3px;
 }

@@ -18,9 +18,7 @@
 }
 
 .card {
-  /* width: 31%; */
   max-width: 340px;
-  /* min-width: 222px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,9 +28,17 @@
   margin: 30px 0px 5px 20px;;
   border-radius: 10px;
   padding-top: 15px;
+  transition: 0.3s;
 }
+
 .active {
   display: none;
+}
+
+.active-card {
+  box-shadow: -9px 9px 5px -1px rgba(44, 48, 172, 0.6);
+  transition: 0.3s;
+  transform: scale(0.95);
 }
 .card p {
   margin: 0;
@@ -52,9 +58,9 @@
   height: 260px;
 }
 
-.good-btn-wrapper {
-  margin-bottom: 10px;
-}
+/* .good-btn-wrapper {
+
+} */
 
 .popular-good {
   color: #B8860B;

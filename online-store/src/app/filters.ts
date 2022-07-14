@@ -32,7 +32,6 @@ filters.forEach((element) => element.addEventListener ('input',e=>{
   if (input.checked && arrSet.length <= 1) {
     arrFilters.push(inputValue);
     arrData.push(inputName);
-    console.log(arrFilters, arrData);
     arrSet = Array.from(new Set(arrData));
       getNewGoods(inputValue, goods, inputName);
   }

@@ -22,9 +22,8 @@ fragment.setAttribute('data-name', `${i.name}`);
   <p>остаток на складе: ${i.quality}шт.</p>
   <p class="popular-good"></p>
   </div>
-   <div class="good-btn-wrapper">
    <button class="good-btn btn">Добавить в корзину</button>
-   </div>`;
+`;
    if (i.popular === 'true') {
      const p = fragment.querySelector('.popular-good');
      if(p) {
