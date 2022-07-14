@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
+  <title>Online Store</title>
+<script defer src="bundle.js"></script></head>
+<body>
+  <header class="header">
+      <div class="header-container wrapper">
+          <img src="./assets/logo.png" class="header-logo" alt="Logo for online-shop">
+          <h1 class="header-title">Cozy home</h1>
+          <img src="./assets/basket.png" class="header-basket" alt="Basket for goods">
+      </div>
+  </header>
+  <main>
+    <div class="main-container wrapper">
+      <section class="search-filter">
+          <input type="search" name="search-place" id="q"  placeholder="Search the site..." autofocus autocomplete="off">
+          <select name="sort-list" class="sort-list">
+            <option value="alphabet-up">По названию, A-Z</option>
+            <option value="alphabet-down">По названию, Z-A</option>
+            <option value="price-up">По цене, самая низкая</option>
+            <option value="price-down">По цене, самая высокая</option>
+          </select>
+      </section>
+      <div class="content-wrapper">
+      <aside class="filter">
+        <section class="filter-production section">
+          <h3>Производитель:</h3>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="seller" value="AksHome">
+              <span class="pseudocheckbox">AksHome</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="seller" value="Brioli">
+            <span class="pseudocheckbox">Brioli</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="seller" value="Divan">
+            <span class="pseudocheckbox">Divan</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="seller" value="Halmar">
+            <span class="pseudocheckbox">Halmar</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="seller" value="Mebelico">
+            <span class="pseudocheckbox">Mebelico</span>
+            </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="seller" value="Mebel Impeks">
+            <span class="pseudocheckbox">Mebel Impeks</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="seller" value="Mebel-APC">
+            <span class="pseudocheckbox">Mebel-APC</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="seller" value="Signal">
+            <span class="pseudocheckbox">Signal</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="seller" value="Stool Group">
+            <span class="pseudocheckbox">Stool Group</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="seller" value="TetChair">
+            <span class="pseudocheckbox">TetChair</span>
+          </label>
+        </section>
+        <section class="filter-color section"> 
+          <h3>Цвет:</h3>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="colorType" value="beige">
+            <span class="pseudocheckbox">бежевый</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="colorType" value="yellow">
+            <span class="pseudocheckbox">желтый</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="colorType" value="green">
+            <span class="pseudocheckbox">зеленый</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="colorType" value="brown">
+            <span class="pseudocheckbox">коричневый</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="colorType" value="red">
+            <span class="pseudocheckbox">красный</span>
+            </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="colorType" value="grey">
+            <span class="pseudocheckbox">серый</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="colorType" value="blue">
+            <span class="pseudocheckbox">синий</span>
+          </label>
+        </section>
+        <section class="filter-type section">
+          <h3> Тип:</h3>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="typeChair" value="rocking-chair">
+            <span class="pseudocheckbox">интерьерное кресло</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="typeChair" value="armchair-sofa">
+            <span class="pseudocheckbox">кресло-диван</span>
+          </label>
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="typeChair" value="chair-simple">
+            <span class="pseudocheckbox">кресло-качалка</span>
+          </label>
+        </section>
+        <section class="filter-popular section">
+          <label>
+            <input type="checkbox" class="filter-checkbox" name="popular" value="true">
+            <span class="pseudocheckbox popular">Только популярные</span>
+          </label>
+        </section>
+        <section class="filter-slider section">
+          <h3> Количество на складе:</h3>
+          <div class="slider-wrapper">
+            <div id="slider"></div>
+            <div class="label-wrapper">
+              <label>
+                <input type="number" min="1" id="input-0" disabled>
+              </label>
+              <label>
+                <input type="number" max="15" id="input-1" disabled>
+              </label>
+            </div>
+          </div>
+        </section>
+        <section class="filter-slider section">
+          <h3> Стоимость:</h3>
+          <div class="slider-wrapper">
+            <div id="slider1"></div>
+            <div class="label-wrapper">
+              <label>
+                <input class="price-input" type="number" min="100" id="input-2" disabled>
+              </label>
+              <label>
+                <input class="price-input" type="number" max="1500" id="input-3" disabled>
+              </label>
+            </div>
+          </div>
+        </section>
+        <section class="buttons section">
+          <button class="reset-filters btn">Сброс фильтров</button>
+          <button class="reset-all btn">Сброс настроек</button>
+        </section>
+      </aside>
+      <div class="card-wrapper">
+        <span class="phrase">Извините, совпадений не обнаружено</span>
+        <div class="content"></div>
+      </div>
+
+    </div>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="footer-container wrapper">
+      <p class="footer-year">2022</p>
+      <p class="footer-link"><a class="github-link" href="https://github.com/katekaliaha" target="_blank">
+        <img src="./assets/git.png" class="footer-img img-github" alt="Logo github">
+      </a></p>
+      <p class = "footer-logo"><a class="rss-logo" href="https://rs.school/js/" target="_blank">
+        <img src="./assets/rss.svg" class="footer-img img-rss" alt="Logo RS School">
+      </a></p>
+    </div>
+  </footer>
+</body>
+</html>
