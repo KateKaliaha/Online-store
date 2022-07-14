@@ -8,9 +8,10 @@
   flex-direction: column;
   font-size: 20px;
 }
+
 .section span {
-text-align: center;
-font-size: 18px;
+  text-align: center;
+  font-size: 18px;
 }
 
 .filter-popular {
@@ -46,20 +47,24 @@ input[type=checkbox] {
   line-height: 16px;
   color:#541663;
 }
+
 .section .popular{
   font-size: 21px;
   font-weight: bold;
 }
+
 input[type=checkbox]:checked + .pseudocheckbox::before {
   content: "\2713";
 }
+
 input[type=checkbox]:checked + span {
   font-weight: bold;
 }
+
 .search-filter {
-width: 100%;
-display: flex;
-justify-content: space-between;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 #q {
@@ -82,33 +87,37 @@ input::-webkit-input-placeholder {
   border-radius: 7px;
   font-size: 20px;
 }
+
 .sort-list:hover {
  border-color: #541663
 }
+
 .sort-list:focus,
 #q:focus { 
   border-color: #541663; 
   box-shadow: 0 0 1px 1px #541663;
   outline: none; 
- }
+}
+
  .buttons {
    align-items: center;
    justify-content: center;
- }
+}
 
  .btn {
-   width: 150px;
-   height: 50px;
-   border-radius: 20px;
-   border: 2px solid #541663;
-   transition-duration: 0.4s;
-   background-color: white;
-   margin-top: 10px;
-   font-size: 18px;
-   font-weight: bold;
-   cursor: pointer;
-   margin-bottom: 10px;
+  width: 150px;
+  height: 50px;
+  border-radius: 20px;
+  border: 2px solid #541663;
+  transition-duration: 0.4s;
+  background-color: white;
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 10px;
  }
+ 
  .btn:hover {
   background-color:  #9e74a8;
   color: white;
