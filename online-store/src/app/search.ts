@@ -1,5 +1,5 @@
 const input= document.getElementById('q') as HTMLInputElement;
-const phrase = document.querySelector('.phrase') as HTMLBaseElement;
+export const phrase = document.querySelector('.phrase') as HTMLBaseElement;
 const contentCard = document.querySelector('.content') as HTMLBaseElement;
 const filterSearch = function (): void {
   input?.addEventListener('keyup', () => onSearch());

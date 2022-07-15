@@ -1,88 +1,77 @@
 import {Chairs} from './interfaces';
-import { goods, content, renderContent} from './content';
+import { goods, renderContent, content} from './content';
+import { phrase } from './search';
 
-let result: Array<Chairs>=[];
-let new_goods: Chairs[];
-const arrFilters:Array<string> = [];
-const arrData:Array<string> = [];
-let arrSet:Array<string> = [];
-const filters = document.querySelectorAll('.filter-checkbox');
+const filters = document.querySelectorAll('.filter-checkbox'); // all filters checkbox
 
+// arrays from value checkboxes
+const arrSellers:Array<string> = [];
+const arrTypeChair:Array<string> = [];
+const arrColors:Array<string> = [];
+const arrPopular:Array<string> = [];
 
-function filterGoods(val:string,goods:Array<Chairs>, type:string) {
-  goods.forEach( i=>{
-    if((i[type as keyof Chairs]as string).indexOf(val)!=-1) {
-      result.push(i);
+let newArr:Array<Chairs> = []; // array after filter
+
+filters.forEach((element) => element.addEventListener ('input', e => {
+  const input = e.target as HTMLInputElement; //checkbox
+  const inputName = input.name as string; //checkbox name ('seller', 'typeChair', 'colorType', 'popular')
+  const inputValue = input.value as string; //checkbox value
+  if (input.checked) {
+    if (inputName === 'seller') {
+      arrSellers.push(inputValue);
     }
-  });
-  return result;
-}
-
-function getNewGoods(value: string, arr2:Chairs[], type:string) {
-  new_goods = filterGoods(value, arr2, type);
-  renderContent(new_goods,content);
-}
-
-
-filters.forEach((element) => element.addEventListener ('input',e=>{
-  const input = e.target as HTMLInputElement;
-  const inputName = input.name as string;  //colorType
-  const inputValue = input.value as string; 
-
-  if (input.checked && arrSet.length <= 1) {
-    arrFilters.push(inputValue);
-    arrData.push(inputName);
-    arrSet = Array.from(new Set(arrData));
-      getNewGoods(inputValue, goods, inputName);
+    if (inputName === 'typeChair') {
+      arrTypeChair.push(inputValue);
+    }
+    if (inputName === 'colorType') {
+      arrColors.push(inputValue);
+    }
+    if (inputName === 'popular') {
+      arrPopular.push(inputValue);
+    }
+    renderContent(filter(goods),content);
   }
   if (!input.checked) {
-    arrFilters.splice(arrFilters.indexOf(inputValue), 1);
-    arrData.splice(arrFilters.indexOf(inputName), 1);
-    arrSet = Array.from(new Set(arrData));
-    new_goods.forEach((el) => {
-      if (el[inputName as keyof Chairs] === inputValue ) {
-        new_goods = new_goods.filter((el) => el[inputName as keyof Chairs] !== inputValue );
-      }
-    });
-      if (new_goods.length > 0) {
-        result = new_goods;
-        renderContent(new_goods,content);
-      } else {
-        result =[];
-        renderContent(goods,content);
-      }
+    if (inputName === 'seller') {
+      arrSellers.splice(arrSellers.indexOf(inputValue), 1);
     }
-
-    else if (arrSet.length > 1){
-      if (input.checked) {
-        new_goods.forEach((el) => {
-          if (el[inputName as keyof Chairs] === input.value ) {
-            new_goods = new_goods.filter((el) => el[inputName as keyof Chairs] == input.value );
-        }
-      });
-      renderContent(new_goods,content);
-      } else if (!input.checked) {
-        new_goods.forEach((el) => {
-          if (el[inputName as keyof Chairs] === input.value ) {
-            new_goods = new_goods.filter((el) => el[inputName as keyof Chairs] !== input.value );
-          }
-        });
-        new_goods = result;
-        renderContent(new_goods,content);
-      }
+    if (inputName === 'typeChair') {
+      arrTypeChair.splice(arrTypeChair.indexOf(inputValue), 1);
     }
+    if (inputName === 'colorType') {
+      arrColors.splice(arrColors.indexOf(inputValue), 1);
+    }
+    if (inputName === 'popular') {
+      arrPopular.splice(arrPopular.indexOf(inputValue), 1);
+    }
+    renderContent(filter(goods),content);
+  }
 }));
 
-
-
-// function getCountClick(ev:HTMLInputElement, value:string) {
-//   if ((ev.checked)) {
-//     if (value === 'colorType') {
-//       count = count + 1;
-//     } 
-//   } else {
-//     count = count - 1;
-//   }
-// }
+function filter(arr:Array<Chairs>) {
+  newArr = [];
+  arr.forEach((el) => {
+    const filterSellers = arrSellers.length === 0 || arrSellers.filter((item) => item === el.seller);
+    const filterTypes = arrTypeChair.length === 0 || arrTypeChair.filter((item) => item === el.typeChair);
+    const filterColors = arrColors.length === 0 || arrColors.filter((item) => item === el.colorType);
+    const filterPopular = arrPopular.length === 0 || arrPopular.filter((item) => item === el.popular);
+    if ((filterSellers as Array<string>).length !== 0
+      && (filterTypes as Array<string>).length !== 0 
+      && (filterColors as Array<string>).length !== 0 
+      && (filterPopular as Array<string>).length !== 0 
+      && filterSellers && filterTypes && filterColors
+      && filterPopular) {
+        newArr.push(el);
+    }
+  });
+  if (newArr.length === 0) {
+    content.style.display = 'none';
+    phrase.style.display = 'block';
+  } else if (newArr.length > 0 ) {
+    phrase.style.display = 'none';
+    content.style.display = '';
+  }
+  return newArr;
+}
 
 
