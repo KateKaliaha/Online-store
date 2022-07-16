@@ -1,7 +1,7 @@
 import {Chairs} from './interfaces';
 import { goods, renderContent, content} from './content';
-// import { phrase } from './search';
 import {filterRange, arrMinMaxSliders, changeStyles} from './slider';
+import { getSort, arrSortValue } from './sort';
 
 const filters = document.querySelectorAll('.filter-checkbox'); // all filters checkbox
 
@@ -11,7 +11,7 @@ const arrSellers:Array<string> = [];
 const arrTypeChair:Array<string> = [];
 const arrColors:Array<string> = [];
 const arrPopular:Array<string> = [];
-
+export let filterQuality:Chairs[] =[];
 
 let newArr:Array<Chairs> = []; // array after filter
 
@@ -32,6 +32,7 @@ filters.forEach((element) => element.addEventListener ('change', e => {
     if (inputName === 'popular') {
       arrPopular.push(inputValue);
     }
+    getAllFilters();
   }
   if (!input.checked) {
     if (inputName === 'seller') {
@@ -46,13 +47,11 @@ filters.forEach((element) => element.addEventListener ('change', e => {
     if (inputName === 'popular') {
       arrPopular.splice(arrPopular.indexOf(inputValue), 1);
     }
+    getAllFilters();
   }
-  const filterQuality = filterRange(goods, arrMinMaxSliders[0], arrMinMaxSliders[1],arrMinMaxSliders[2],arrMinMaxSliders[3]);
-  renderContent(filterQuality, content);
-  changeStyles(newArr.length);
 }));
 
-export function filter(arr:Array<Chairs>) {
+export function getFilterList(arr:Array<Chairs>) {
   newArr = [];
   arr.forEach((el) => {
     const filterSellers = arrSellers.length === 0 || arrSellers.filter((item) => item === el.seller);
@@ -72,4 +71,12 @@ export function filter(arr:Array<Chairs>) {
   return newArr;
 }
 
-
+export function getAllFilters() {
+  filterQuality = filterRange(goods, arrMinMaxSliders[0], arrMinMaxSliders[1],arrMinMaxSliders[2],arrMinMaxSliders[3]);
+  if (arrSortValue.length !==0) {
+    getSort(arrSortValue);
+  }
+  renderContent(filterQuality, content);
+  changeStyles(newArr.length);
+  changeStyles(filterQuality.length);
+}

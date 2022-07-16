@@ -1,56 +1,69 @@
+import {Chairs} from './interfaces';
+import { goods, renderContent, content} from './content';
+import { filterQuality } from './filters';
+
 const select = document.querySelector('.sort-list') as HTMLSelectElement;
+export const arrSortValue:string[] = [];
 
 select.addEventListener('change', function() {
-  if (this.value === 'price-up') {
-    sort('data-price','price-up');
-  }
-  if(this.value === 'price-down') {
-    sort('data-price', 'price-down');
-  }
-  if(this.value === 'alphabet-up') {
-    sort('data-name', 'alphabet-up');
-  }
-  if(this.value === 'alphabet-down') {
-    sort('data-name', 'alphabet-down');
-  }
+  arrSortValue.splice(0, 1, this.value);
+  getSort(arrSortValue);
 });
 
-function sort(sortType: string, valueSelect:string) {
-  const content = document.querySelector('.content') as Element;
-  for (let i = 0; i < content?.children.length; i++) {
-    for (let j = i; j < content?.children.length; j++) {
-      if(content.children[i].getAttribute(sortType) !== null) {
-        if (valueSelect === 'price-up') {
-          if(+(content.children[i].getAttribute(sortType) as string) > +(content.children[j].getAttribute(sortType) as string)) {
-          const replacedNode = content.replaceChild(content.children[j], content.children[i]);
-          insertAfter(replacedNode, content.children[i]);
-          }
-        }
-        if (valueSelect === 'alphabet-up') {
-          if((content.children[i].getAttribute(sortType) as string) > (content.children[j].getAttribute(sortType) as string)) {
-            const replacedNode = content.replaceChild(content.children[j], content.children[i]);
-            insertAfter(replacedNode, content.children[i]);
-          }
-        }
-        if (valueSelect === 'price-down') {
-          if(+(content.children[i].getAttribute(sortType) as string) < +(content.children[j].getAttribute(sortType) as string)) {
-            const replacedNode = content.replaceChild(content.children[j], content.children[i]);
-            insertAfter(replacedNode, content.children[i]);
-          }
-        }
-        if (valueSelect === 'alphabet-down') {
-          if((content.children[i].getAttribute(sortType) as string) < (content.children[j].getAttribute(sortType) as string)) {
-            const replacedNode = content.replaceChild(content.children[j], content.children[i]);
-            insertAfter(replacedNode, content.children[i]);
-          }
-        }
-      }
+export function sortGoods(products:Array<Chairs>, section:HTMLElement, reverse = false, sortValue:string) {
+  if (sortValue === 'data-price'){
+    if (reverse) {
+      products.sort(sortByPrice).reverse();
+    } else {
+      products.sort(sortByPrice);
     }
   }
+  if (sortValue === 'data-name'){
+    if (reverse) {
+      products.sort(sortByAlphabet).reverse();
+    } else {
+      products.sort(sortByAlphabet);
+    }
+  }
+  section.innerHTML = '';
+  renderContent(products, content);
 }
 
-function insertAfter(elem: Element, refElem: Element) {
-  return refElem.parentNode?.insertBefore(elem, refElem.nextSibling);
+function sortByPrice(goodCurr:Chairs, goodNext:Chairs) {
+  if (goodCurr.price < goodNext.price) {return -1;}
+  if (goodCurr.price > goodNext.price) {return 1;}
+  return 0;
+}
+
+function sortByAlphabet(goodCurr:Chairs, goodNext:Chairs) {
+  if (goodCurr.name < goodNext.name) {return -1;}
+  if (goodCurr.name > goodNext.name) {return 1;}
+  return 0;
+}
+
+function getFilteredList () {
+  let mas: Array<Chairs> = [];
+  if (filterQuality.length !== 0) {
+    mas = filterQuality;
+  } else if (filterQuality.length === 0) {
+ mas = goods;
+
+  }
+  return mas;
 }
 
 
+export function getSort(value:string[]) {
+  if (value[0] === 'price-up') {
+    sortGoods(getFilteredList (), content,false, 'data-price');
+  }
+  if(value[0] === 'price-down') {
+    sortGoods(getFilteredList (), content,true, 'data-price');
+  }
+  if(value[0] === 'alphabet-up') {
+    sortGoods(getFilteredList (), content,false,'data-name');
+  }
+  if(value[0] === 'alphabet-down') {
+    sortGoods(getFilteredList (), content,true,'data-name');
+  }
+}
