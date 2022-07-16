@@ -1,15 +1,17 @@
 const btnBuyGoods = document.querySelectorAll('.good-btn');
-let countGoodsBasket = 0;
+export let countGoodsBasket = 0;
 const boxCountGoods = document.querySelector('.basket-counter') as HTMLDivElement;
-
+export const listBasketGoods: Array<string> = [];
 function addGoodsFromBasket (btnText: HTMLButtonElement) {
   btnText.innerHTML = 'Удалить из корзины';
   countGoodsBasket = countGoodsBasket + 1;
+  listBasketGoods.push(((btnText.parentNode as HTMLDivElement).getAttribute('data-name'))as string);
 }
 
 function removeGoodsFromBasket (btnText: HTMLButtonElement) {
   btnText.innerHTML = 'Добавить в корзину';
   countGoodsBasket = countGoodsBasket - 1;
+  listBasketGoods.splice(listBasketGoods.indexOf(((btnText.parentNode as HTMLDivElement).getAttribute('data-name'))as string), 1);
 }
 
 function toggleClassList(btnText: HTMLButtonElement) {
@@ -45,6 +47,7 @@ btnBuyGoods.forEach((el) => el.addEventListener('click', e => {
     drawQualityGoods(countGoodsBasket);
   }
 }));
+
 
 
 

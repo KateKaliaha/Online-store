@@ -2,7 +2,7 @@ import {Chairs} from './interfaces';
 import { goods, renderContent, content} from './content';
 import {filterRange, arrMinMaxSliders, changeStyles} from './slider';
 import { getSort, arrSortValue } from './sort';
-
+import { getSearchList, searchInput } from './search';
 const filters = document.querySelectorAll('.filter-checkbox'); // all filters checkbox
 
 
@@ -76,7 +76,14 @@ export function getAllFilters() {
   if (arrSortValue.length !==0) {
     getSort(arrSortValue);
   }
+  if (searchInput !== '') {
+    getSearchList(searchInput, filterQuality);
+  }
+  // if (searchValue !== '') {
+  //   getSearchList(searchValue, filterQuality);
+  // }
   renderContent(filterQuality, content);
   changeStyles(newArr.length);
   changeStyles(filterQuality.length);
 }
+

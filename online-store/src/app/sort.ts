@@ -47,7 +47,6 @@ function getFilteredList () {
     mas = filterQuality;
   } else if (filterQuality.length === 0) {
  mas = goods;
-
   }
   return mas;
 }

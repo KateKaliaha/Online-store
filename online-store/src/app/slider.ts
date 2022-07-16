@@ -2,7 +2,7 @@ import * as noUiSlider from '../../node_modules/nouislider/dist/nouislider';
 import {Chairs} from './interfaces';
 import { goods, content} from './content';
 import { getFilterList, getAllFilters } from './filters';
-import { phrase } from './search';
+
 
 const sliderQuantity: noUiSlider.target = document.getElementById('slider-quantity') as noUiSlider.target;
 const sliderPrice: noUiSlider.target = document.getElementById('slider-price') as noUiSlider.target;
@@ -90,7 +90,7 @@ sliderPrice.noUiSlider?.on('change', function () {
 });
 
 //==============================================
-
+const phrase = document.querySelector('.phrase') as HTMLBaseElement;
 export function changeStyles (length: number) {
   if (length === 0) {
     content.style.display = 'none';
