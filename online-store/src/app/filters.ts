@@ -3,6 +3,7 @@ import { goods, renderContent, content} from './content';
 import {filterRange, arrMinMaxSliders, changeStyles} from './slider';
 import { getSort, arrSortValue } from './sort';
 import { getSearchList, searchInput } from './search';
+import { getChangeInBasket, findActiveCards } from './basket';
 const filters = document.querySelectorAll('.filter-checkbox'); // all filters checkbox
 
 
@@ -85,5 +86,12 @@ export function getAllFilters() {
   renderContent(filterQuality, content);
   changeStyles(newArr.length);
   changeStyles(filterQuality.length);
+  getChangeInBasket();
+findActiveCards();
+
 }
 
+export let btnBuyGoods: NodeListOf<Element>;
+export function findButton () {
+ btnBuyGoods = document.querySelectorAll('.good-btn');
+}
