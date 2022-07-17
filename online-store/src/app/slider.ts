@@ -4,8 +4,8 @@ import { goods, content} from './content';
 import { getFilterList, getAllFilters } from './filters';
 
 
-const sliderQuantity: noUiSlider.target = document.getElementById('slider-quantity') as noUiSlider.target;
-const sliderPrice: noUiSlider.target = document.getElementById('slider-price') as noUiSlider.target;
+export const sliderQuantity: noUiSlider.target = document.getElementById('slider-quantity') as noUiSlider.target;
+export const sliderPrice: noUiSlider.target = document.getElementById('slider-price') as noUiSlider.target;
 
 function createSliders () {
   if (sliderQuantity) {
@@ -35,13 +35,15 @@ createSliders();
 
 export const minValueSliderQuantity = document.getElementById('min-value-quantity') as HTMLInputElement;
 export const maxValueSliderQuantity = document.getElementById('max-value-quantity') as HTMLInputElement;
-const ValueSliderQuantity: Array<HTMLInputElement> = [minValueSliderQuantity, maxValueSliderQuantity];
+export const ValueSliderQuantity: Array<HTMLInputElement> = [minValueSliderQuantity, maxValueSliderQuantity];
 export let arrMinMaxSliders:Array<number> = [1, 15, 100, 1500];
+
 
 sliderQuantity.noUiSlider?.on('update', function(values, handle: number): void {
   if (ValueSliderQuantity) {
     ValueSliderQuantity[handle].value = (values[handle] as string).split('.')[0];
   }
+  // getAllFilters();
 });
 
 export const minValueSliderPrice = document.getElementById('min-value-price') as HTMLInputElement;
@@ -55,10 +57,13 @@ sliderPrice.noUiSlider?.on('update', function(values, handle: number): void {
   }
 });
 
+export let filterList:Chairs[];
 //========================================================================================
 export function filterRange(arrChairs:Array<Chairs>, valMinQuality:number, valMaxQuality:number, valMinPrice:number, valMaxPrice:number) {
-  return getFilterList(goods).filter(item => (valMinQuality <= item.quality 
+ filterList = getFilterList(goods).filter(item => (valMinQuality <= item.quality 
     && item.quality <= valMaxQuality && valMinPrice <= item.price && item.price <= valMaxPrice));
+console.log(filterList);
+    return filterList;
 }
 
 

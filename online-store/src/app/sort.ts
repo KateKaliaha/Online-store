@@ -40,14 +40,14 @@ function sortByAlphabet(goodCurr:Chairs, goodNext:Chairs) {
   if (goodCurr.name > goodNext.name) {return 1;}
   return 0;
 }
-
-function getFilteredList () {
-  let mas: Array<Chairs> = [];
+export let mas: Array<Chairs> = [];
+export function getFilteredList () {
   if (filterQuality.length !== 0) {
     mas = filterQuality;
   } else if (filterQuality.length === 0) {
- mas = goods;
+  mas = goods;
   }
+  console.log(mas);
   return mas;
 }
 

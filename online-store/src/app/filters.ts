@@ -4,17 +4,19 @@ import {filterRange, arrMinMaxSliders, changeStyles} from './slider';
 import { getSort, arrSortValue } from './sort';
 import { getSearchList, searchInput } from './search';
 import { getChangeInBasket, findActiveCards } from './basket';
-const filters = document.querySelectorAll('.filter-checkbox'); // all filters checkbox
+
+
+export const filters = document.querySelectorAll('.filter-checkbox'); // all filters checkbox
 
 
 // arrays from value checkboxes
-const arrSellers:Array<string> = [];
-const arrTypeChair:Array<string> = [];
-const arrColors:Array<string> = [];
-const arrPopular:Array<string> = [];
+export const arrSellers:Array<string> = [];
+export const arrTypeChair:Array<string> = [];
+export const arrColors:Array<string> = [];
+export const arrPopular:Array<string> = [];
 export let filterQuality:Chairs[] =[];
 
-let newArr:Array<Chairs> = []; // array after filter
+export let newArr:Array<Chairs> = []; // array after filter
 
 filters.forEach((element) => element.addEventListener ('change', e => {
   const input = e.target as HTMLInputElement; //checkbox
@@ -72,6 +74,7 @@ export function getFilterList(arr:Array<Chairs>) {
   return newArr;
 }
 
+
 export function getAllFilters() {
   filterQuality = filterRange(goods, arrMinMaxSliders[0], arrMinMaxSliders[1],arrMinMaxSliders[2],arrMinMaxSliders[3]);
   if (arrSortValue.length !==0) {
@@ -80,15 +83,11 @@ export function getAllFilters() {
   if (searchInput !== '') {
     getSearchList(searchInput, filterQuality);
   }
-  // if (searchValue !== '') {
-  //   getSearchList(searchValue, filterQuality);
-  // }
   renderContent(filterQuality, content);
   changeStyles(newArr.length);
   changeStyles(filterQuality.length);
   getChangeInBasket();
-findActiveCards();
-
+  findActiveCards();
 }
 
 export let btnBuyGoods: NodeListOf<Element>;
