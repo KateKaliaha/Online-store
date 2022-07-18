@@ -12,7 +12,10 @@
       <div class="header-container wrapper">
           <img src="./assets/logo.png" class="header-logo" alt="Logo for online-shop">
           <h1 class="header-title">Cozy home</h1>
-          <img src="./assets/basket.png" class="header-basket" alt="Basket for goods">
+          <div class="basket">
+            <img src="./assets/basket.png" class="header-basket" alt="Basket for goods">
+            <div class ="basket-counter"></div>
+          </div>
       </div>
   </header>
   <main>
@@ -20,6 +23,7 @@
       <section class="search-filter">
           <input type="search" name="search-place" id="q"  placeholder="Search the site..." autofocus autocomplete="off">
           <select name="sort-list" class="sort-list">
+            <option value="empty" selected disabled>Выберите вид сортировки</option>
             <option value="alphabet-up">По названию, A-Z</option>
             <option value="alphabet-down">По названию, Z-A</option>
             <option value="price-up">По цене, самая низкая</option>
@@ -126,13 +130,13 @@
         <section class="filter-slider section">
           <h3> Количество на складе:</h3>
           <div class="slider-wrapper">
-            <div id="slider"></div>
+            <div id="slider-quantity" class= "filter-checkbox" name="slider-quality"></div>
             <div class="label-wrapper">
               <label>
-                <input type="number" min="1" id="input-0" disabled>
+                <input type="number" min="1" id="min-value-quantity" disabled>
               </label>
               <label>
-                <input type="number" max="15" id="input-1" disabled>
+                <input type="number" max="15" id="max-value-quantity" disabled>
               </label>
             </div>
           </div>
@@ -140,13 +144,13 @@
         <section class="filter-slider section">
           <h3> Стоимость:</h3>
           <div class="slider-wrapper">
-            <div id="slider1"></div>
+            <div id="slider-price" class= "filter-checkbox" name="slider-price"></div>
             <div class="label-wrapper">
               <label>
-                <input class="price-input" type="number" min="100" id="input-2" disabled>
+                <input class="price-input" type="number" min="100" id="min-value-price" disabled>
               </label>
               <label>
-                <input class="price-input" type="number" max="1500" id="input-3" disabled>
+                <input class="price-input" type="number" max="1500" id="max-value-price" disabled>
               </label>
             </div>
           </div>
