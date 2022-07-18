@@ -1,12 +1,14 @@
 import * as noUiSlider from '../../node_modules/nouislider/dist/nouislider';
-import {Chairs} from './interfaces';
-import { goods, content} from './content';
-import { getFilterList, getAllFilters } from './filters';
+// import {Chairs} from './interfaces';
+import { content} from './content';
+// import { searchInput, getSearchList, input } from './search';
+// import { getFilterList, getAllFilters, newArr } from './filters';
+import { getAllFilters} from './filters';
 
 
 export const sliderQuantity: noUiSlider.target = document.getElementById('slider-quantity') as noUiSlider.target;
 export const sliderPrice: noUiSlider.target = document.getElementById('slider-price') as noUiSlider.target;
-
+// let arrFilterBySlider:Chairs[];
 function createSliders () {
   if (sliderQuantity) {
     noUiSlider.create(sliderQuantity, {
@@ -43,7 +45,10 @@ sliderQuantity.noUiSlider?.on('update', function(values, handle: number): void {
   if (ValueSliderQuantity) {
     ValueSliderQuantity[handle].value = (values[handle] as string).split('.')[0];
   }
+  // console.log(arrFilterBySlider);
+  // filterRange(newArr, arrMinMaxSliders[0], arrMinMaxSliders[1],arrMinMaxSliders[2],arrMinMaxSliders[3]);
   // getAllFilters();
+
 });
 
 export const minValueSliderPrice = document.getElementById('min-value-price') as HTMLInputElement;
@@ -57,15 +62,25 @@ sliderPrice.noUiSlider?.on('update', function(values, handle: number): void {
   }
 });
 
-export let filterList:Chairs[];
+// export let filterList:Chairs[];
 //========================================================================================
-export function filterRange(arrChairs:Array<Chairs>, valMinQuality:number, valMaxQuality:number, valMinPrice:number, valMaxPrice:number) {
- filterList = getFilterList(goods).filter(item => (valMinQuality <= item.quality 
-    && item.quality <= valMaxQuality && valMinPrice <= item.price && item.price <= valMaxPrice));
-console.log(filterList);
-    return filterList;
-}
-
+// export function filterRange(arrChairs:Array<Chairs>, valMinQuality:number, valMaxQuality:number, valMinPrice:number, valMaxPrice:number) {
+//  filterList = getFilterList(goods).filter(item => (valMinQuality <= item.quality 
+//     && item.quality <= valMaxQuality && valMinPrice <= item.price && item.price <= valMaxPrice));
+//     return filterList;
+// }
+// let arrFilterBySlider:Chairs[] = [];
+// export function filterRange(arrChairs:Array<Chairs>, valMinQuality:number, valMaxQuality:number, valMinPrice:number, valMaxPrice:number) {
+//   if (arrChairs.length === 0) {
+//     arrChairs = goodsCopy;
+//     arrFilterBySlider = getFilterList(arrChairs).filter(item => (valMinQuality <= item.quality 
+//     && item.quality <= valMaxQuality && valMinPrice <= item.price && item.price <= valMaxPrice));
+//   } else {
+//     arrFilterBySlider = getFilterList(arrChairs).filter(item => (valMinQuality <= item.quality 
+//       && item.quality <= valMaxQuality && valMinPrice <= item.price && item.price <= valMaxPrice));
+//   }
+// return arrFilterBySlider;
+// }
 
 sliderQuantity.noUiSlider?.on('change', function () {
   if (sliderQuantity.noUiSlider?.target) {
@@ -75,7 +90,11 @@ sliderQuantity.noUiSlider?.on('change', function () {
   //   renderContent(filterSlidersGoods, content);
   // }
   // changeStyles(filterSlidersGoods.length);
+
+  // filterRange(newArr, arrMinMaxSliders[0], arrMinMaxSliders[1],arrMinMaxSliders[2],arrMinMaxSliders[3]);
   getAllFilters();
+  // changeStyles(arrFilterBySlider.length);
+    // getAllFilters();
   }
 });
 
@@ -89,8 +108,10 @@ sliderPrice.noUiSlider?.on('change', function () {
   //   filterSlidersGoods = filterRange(goods, arrMinMaxSliders[0], arrMinMaxSliders[1],arrMinMaxSliders[2],arrMinMaxSliders[3]);
   //   renderContent(filterSlidersGoods, content);
   // }
-  // changeStyles(filterSlidersGoods.length);
+
   getAllFilters();
+  // filterRange(newArr, arrMinMaxSliders[0], arrMinMaxSliders[1],arrMinMaxSliders[2],arrMinMaxSliders[3]);
+  //   changeStyles(arrFilterBySlider.length);
   }
 });
 
@@ -105,3 +126,31 @@ export function changeStyles (length: number) {
     content.style.display = '';
   }
 }
+
+
+
+
+//====================
+
+// export function filterRange(arrChairs:Array<Chairs>, valMinQuality:number, valMaxQuality:number, valMinPrice:number, valMaxPrice:number) {
+//   if (arrChairs.length === 0) {
+//     arrChairs = goodsCopy;
+//     arrFilterBySlider = getFilterList(arrChairs).filter(item => (valMinQuality <= item.quality 
+//     && item.quality <= valMaxQuality && valMinPrice <= item.price && item.price <= valMaxPrice));
+//   } else {
+//     arrFilterBySlider = getFilterList(arrChairs).filter(item => (valMinQuality <= item.quality 
+//       && item.quality <= valMaxQuality && valMinPrice <= item.price && item.price <= valMaxPrice));
+//   }
+//   // renderContent(arrFilterBySlider, content);
+// return arrFilterBySlider;
+// }
+// export function filterRange(arrChairs:Array<Chairs>, valMinQuality:number, valMaxQuality:number, valMinPrice:number, valMaxPrice:number) {
+//   if (arrChairs.length === 0) {
+//     arrChairs = goodsCopy;
+//   }
+//   return getFilterList(arrChairs).filter(item => (valMinQuality <= item.quality 
+//     && item.quality <= valMaxQuality && valMinPrice <= item.price && item.price <= valMaxPrice));
+ 
+//   // renderContent(arrFilterBySlider, content);
+// //  arrFilterBySlider;
+// }

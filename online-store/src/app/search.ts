@@ -1,39 +1,56 @@
 import {Chairs} from './interfaces';
-import { renderContent, content, goods} from './content';
-import { filterQuality } from './filters';
+import { goodsCopy} from './content';
+import { getAllFilters,arrAllFilters} from './filters';
 import {changeStyles} from './slider';
 
-const input= document.getElementById('q') as HTMLInputElement;
-let newArr: Array<Chairs> = [];
+
+export const input= document.getElementById('q') as HTMLInputElement;
+
+let arrSearch: Array<Chairs> = [];
+
 export let searchInput:string;
 input.addEventListener('input', (event) => {
   const searchValue = (event.target as HTMLInputElement).value.toLowerCase();
   searchInput = searchValue;
-  if (filterQuality.length !== 0) {
-    getSearchList(searchInput, filterQuality);
-  } else {
-    getSearchList(searchInput, goods);
-  }
+  getSearchList(searchInput, arrAllFilters);
+  getAllFilters();
   return searchInput;
 });
 
-
 export function getSearchList (value:string, arr: Array<Chairs>) {
-  newArr = [];
-  if (arr.length !== 0) {
-    if (value != '') {
+  arrSearch = [];
+  if (arr.length === 0) {
+    arr = goodsCopy;
+    if (value !== '') {
       arr.forEach((el) => {
-        if(el.name.toLowerCase().search(value) !== -1) {
-          newArr.push(el);
+        if (el.name.toLowerCase().includes(value.toLowerCase())) {
+          arrSearch.push(el);
+        } 
+      });
+    }
+    if (value === '') {
+      arrSearch = arr;
+    }
+  } else
+  if (arr.length !== 0) {
+    if (value !== '') {
+      arr.forEach((el) => {
+        if (el.name.toLowerCase().includes(value.toLowerCase())) {
+          arrSearch.push(el);
         }
       });
-    } if (value == '') {
-      newArr = arr;
     }
-  } else {
-    newArr = goods;
+    if (value === '') {
+      arrSearch = arr;
+    }
   }
-  changeStyles(newArr.length);
-  renderContent(newArr, content);
-  return newArr;
+  if ((arr.filter(i => arrSearch.includes(i))).length === 0) {
+    changeStyles((arr.filter(i => arrSearch.includes(i))).length);
+  }
+  return arr.filter(i => arrSearch.includes(i));
 }
+
+input.addEventListener('search', () => {
+  input.dispatchEvent(new Event('input'));
+  getAllFilters();
+});

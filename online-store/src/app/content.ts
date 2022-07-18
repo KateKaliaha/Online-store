@@ -3,6 +3,7 @@ import { Chairs } from './interfaces';
 
 
 export const goods:Array<Chairs>= Goods.chairs;
+export const goodsCopy = [...goods];
 export const content = document.querySelector('.content') as HTMLElement;
 
 export function renderContent(_goods: Array<Chairs>,el=document.body): void {
@@ -11,15 +12,6 @@ export function renderContent(_goods: Array<Chairs>,el=document.body): void {
     const fragment:HTMLDivElement = document.createElement('div');
     fragment.setAttribute('data-price', `${i.price}`);
     fragment.setAttribute('data-name', `${i.name}`);
-    // if(listBasketGoods.length !== 0) {
-    //   const c = listBasketGoods.length === 0 || listBasketGoods.filter((item) => {
-    //   return item === i.name;
-    //   });
-    //   if ((c as Array<string>).length !==0) {
-    //     if(i.name === (fragment.getAttribute('data-name') as string))
-    //     fragment.className = 'card active-card';
-    //   }
-    // } 
     fragment.className = 'card';
     fragment.innerHTML = ` <div class="good-picture">
                           <img class="good-picture-img" src="${i.img}" alt = "Type of chair">
@@ -41,10 +33,6 @@ export function renderContent(_goods: Array<Chairs>,el=document.body): void {
       }
     }
     el.appendChild(fragment);
-    // if(fragment.classList.contains('active-card')) {
-    //   const btn = fragment.querySelector('.good-btn') as HTMLButtonElement;
-    //   btn.classList.add('active-btn');
-    // }
   });
 }
 

@@ -1,33 +1,15 @@
 import {Chairs} from './interfaces';
 import { goods, renderContent, content} from './content';
-import { filterQuality } from './filters';
+import {arrAllFilters } from './filters';
 
-const select = document.querySelector('.sort-list') as HTMLSelectElement;
+export const select = document.querySelector('.sort-list') as HTMLSelectElement;
+export const copyGoodsSort = [...goods];
 export const arrSortValue:string[] = [];
 
 select.addEventListener('change', function() {
   arrSortValue.splice(0, 1, this.value);
-  getSort(arrSortValue);
+  renderContent(getSort(arrSortValue) as Chairs[], content);
 });
-
-export function sortGoods(products:Array<Chairs>, section:HTMLElement, reverse = false, sortValue:string) {
-  if (sortValue === 'data-price'){
-    if (reverse) {
-      products.sort(sortByPrice).reverse();
-    } else {
-      products.sort(sortByPrice);
-    }
-  }
-  if (sortValue === 'data-name'){
-    if (reverse) {
-      products.sort(sortByAlphabet).reverse();
-    } else {
-      products.sort(sortByAlphabet);
-    }
-  }
-  section.innerHTML = '';
-  renderContent(products, content);
-}
 
 function sortByPrice(goodCurr:Chairs, goodNext:Chairs) {
   if (goodCurr.price < goodNext.price) {return -1;}
@@ -40,29 +22,55 @@ function sortByAlphabet(goodCurr:Chairs, goodNext:Chairs) {
   if (goodCurr.name > goodNext.name) {return 1;}
   return 0;
 }
-export let mas: Array<Chairs> = [];
-export function getFilteredList () {
-  if (filterQuality.length !== 0) {
-    mas = filterQuality;
-  } else if (filterQuality.length === 0) {
-  mas = goods;
-  }
-  console.log(mas);
-  return mas;
-}
 
+function sortContent (arr:Chairs[], selectValue: string, reverse = false) {
+  if (arr.length === 0) {
+    if (selectValue === 'data-price') {
+      arr = copyGoodsSort;
+      if (reverse) {
+        arr.sort(sortByPrice).reverse();
+      } else {
+        arr.sort(sortByPrice);
+      }
+    }
+    if (selectValue === 'data-name') {
+      arr = copyGoodsSort;
+      if (reverse) {
+        arr.sort(sortByAlphabet).reverse();
+      } else {
+        arr.sort(sortByAlphabet);
+      }
+    }
+  } else if (arr.length > 0) {
+    if (selectValue === 'data-price') {
+      if (reverse) {
+        arr.sort(sortByPrice).reverse();
+      } else {
+        arr.sort(sortByPrice);
+      }
+    }
+    if (selectValue === 'data-name') {
+      if (reverse) {
+        arr.sort(sortByAlphabet).reverse();
+      } else {
+        arr.sort(sortByAlphabet);
+      }
+    }
+  }
+  return arr;
+}
 
 export function getSort(value:string[]) {
   if (value[0] === 'price-up') {
-    sortGoods(getFilteredList (), content,false, 'data-price');
+    return sortContent(arrAllFilters, 'data-price',false);
   }
   if(value[0] === 'price-down') {
-    sortGoods(getFilteredList (), content,true, 'data-price');
+    return sortContent(arrAllFilters, 'data-price',true );
   }
   if(value[0] === 'alphabet-up') {
-    sortGoods(getFilteredList (), content,false,'data-name');
+    return sortContent(arrAllFilters, 'data-name',false);
   }
   if(value[0] === 'alphabet-down') {
-    sortGoods(getFilteredList (), content,true,'data-name');
+    return sortContent(arrAllFilters, 'data-name',true);
   }
 }

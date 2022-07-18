@@ -1,6 +1,6 @@
-let countGoodsBasket = 0;
+export let countGoodsBasket = 0;
 const boxCountGoods = document.querySelector('.basket-counter') as HTMLDivElement;
-const listBasketGoods: Array<string> = [];
+let listBasketGoods: Array<string> = [];
 
 function addGoodsToBasket (btnText: HTMLButtonElement) {
   btnText.innerHTML = 'Удалить из корзины';
@@ -54,7 +54,6 @@ export function getChangeInBasket () {
 
 getChangeInBasket();
 
-
 export function findActiveCards() {
   const cards = document.querySelectorAll('.card');
   if (listBasketGoods.length !== 0) {
@@ -68,4 +67,13 @@ export function findActiveCards() {
       }
     });
   }
+}
+
+export function resetBasket () {
+  countGoodsBasket = 0;
+  listBasketGoods = [];
+  boxCountGoods.innerHTML = '';
+  boxCountGoods.style.display = 'none';
+  getChangeInBasket ();
+  findActiveCards();
 }
