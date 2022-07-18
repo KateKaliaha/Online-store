@@ -26,8 +26,6 @@ btnClearAll?.addEventListener('click', () => {
   select.dispatchEvent(new Event('change'));
   renderContent(goods, content);
   resetBasket();
-
   localStorage.clear();
 });
-
 

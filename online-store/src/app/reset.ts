@@ -29,6 +29,3 @@ btnReset?.addEventListener('click', () => {
   getChangeInBasket();
   findActiveCards();
 });
-
-
-

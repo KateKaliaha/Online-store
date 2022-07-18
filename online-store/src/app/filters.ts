@@ -12,11 +12,10 @@ export let btnBuyGoods: NodeListOf<Element>;
 // arrays from value checkboxes
 export const arrSellers:Array<string> = [];
 export const arrTypeChair:Array<string> = [];
-// export const arrTypeChair:Array<string> = JSON.parse(localStorage.getItem('arrTypeChair') as string) || [];
 export const arrColors:Array<string> = [];
 export const arrPopular:Array<string> = [];
 export const filterSliderPrice:Array<string> = [];
-// export const filterQuality:Chairs[] =[];
+
 
 export let newArr:Array<Chairs> = []; // array after filter
 export let arrAllFilters:Array<Chairs> = []; // array with after filters
@@ -58,7 +57,6 @@ function getActiveFilters () {
       getAllFilters();
     }
   }));
-  changeInputStyle();
 }
 
 export function getFilterList(arr:Array<Chairs>) {
@@ -98,10 +96,6 @@ export function getAllFilters() {
   renderContent(arrAllFilters, content);
   getChangeInBasket();
   findActiveCards();
-  localStorage.setItem('arrSellers', JSON.stringify(arrSellers));
-  localStorage.setItem('arrTypeChair', JSON.stringify(arrTypeChair));
-  localStorage.setItem('arrColors', JSON.stringify(arrColors));
-  localStorage.setItem('arrPopular', JSON.stringify(arrPopular));
 }
 
 
@@ -109,16 +103,5 @@ export function findButton () {
   btnBuyGoods = document.querySelectorAll('.good-btn');
 }
 
-function changeInputStyle () {
-  if (JSON.parse(localStorage.getItem('arrTypeChair') as string) !== 0) {
-    filters.forEach ((checkbox) => {
-    const activeCheckbox = arrTypeChair.filter((item) => item === (checkbox as HTMLInputElement).value);
-      if (activeCheckbox.length !== 0 ) {
-        (checkbox as HTMLInputElement).checked = true;
-      }
-    });
-  }
-}
-
 getActiveFilters ();
-// window.addEventListener('load', getLocalStorage);
+

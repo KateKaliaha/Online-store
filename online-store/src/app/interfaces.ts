@@ -3,11 +3,11 @@ export interface Chairs {
   seller: string;
   price: number;
   type: string;
-  seat:  string;
-  color:  string;
+  seat: string;
+  color: string;
   quality: number;
-  frame:  string;
-  img:  string;
+  frame: string;
+  img: string;
   popular: string;
   colorType: string;
   typeChair: string;
