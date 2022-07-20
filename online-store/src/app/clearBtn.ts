@@ -1,10 +1,9 @@
-import { arrSellers, arrTypeChair, arrColors, arrPopular, filters} from './filters';
-import { sliderQuantity, sliderPrice} from './slider';
+import { arrSellers, arrTypeChair, arrColors, arrPopular, filters, findButton, resetArrAllFilters } from './filters';
+import { sliderQuantity, sliderPrice, changeStyles} from './slider';
 import { arrSortValue, select} from './sort';
 import { input } from './search';
-import { arrAllFilters } from './filters';
-import { renderContent,goods, content} from './content';
-import { countGoodsBasket, resetBasket } from './basket';
+import { renderContent,goods, content, goodsCopy} from './content';
+import { countGoodsBasket, resetBasket} from './basket';
 
 const btnClearAll = document.querySelector('.reset-all');
 
@@ -20,12 +19,15 @@ btnClearAll?.addEventListener('click', () => {
   input.value = '';
   sliderQuantity.noUiSlider?.reset();
   sliderPrice.noUiSlider?.reset();
-  arrAllFilters .length = 0;
   arrSortValue.length = 0;
   select.selectedIndex= 0;
   select.dispatchEvent(new Event('change'));
+  changeStyles(goodsCopy.length);
+  (document.querySelector('.phrase') as HTMLSpanElement).style.display = 'none';
+  (document.querySelector('.content') as HTMLElement).style.display = '';
   renderContent(goods, content);
   resetBasket();
+  resetArrAllFilters ();
   localStorage.clear();
+  findButton();
 });
-

@@ -1,8 +1,8 @@
-import { arrSellers, arrTypeChair, arrColors, arrPopular, filters} from './filters';
-import { sliderQuantity, sliderPrice} from './slider';
+import { arrSellers, arrTypeChair, arrColors, arrPopular, setLocalStorage} from './filters';
+import { sliderQuantity, sliderPrice, changeStyles} from './slider';
 import { arrSortValue, getSort, select} from './sort';
-import { arrAllFilters, newArr } from './filters';
-import { renderContent, goods, content} from './content';
+import { resetArrAllFilters} from './filters';
+import { renderContent, goods, content, goodsCopy} from './content';
 import { getChangeInBasket, findActiveCards } from './basket';
 import { input } from './search';
 
@@ -13,19 +13,23 @@ btnReset?.addEventListener('click', () => {
   arrTypeChair.length = 0;
   arrSellers.length = 0;
   arrPopular.length = 0;
-  filters.forEach((filter) => 
-    { (filter as HTMLInputElement).checked = false;}
-  );
   sliderQuantity.noUiSlider?.reset();
   sliderPrice.noUiSlider?.reset();
-  arrAllFilters.length = 0;
-  newArr.length = 0;
+  localStorage.setItem('arrMinMaxSliders', JSON.stringify([1, 15, 100, 1500]));
+  resetArrAllFilters();
   input.value = '';
   renderContent(goods, content);
+  document.querySelectorAll('.filter-checkbox').forEach((filter) => 
+  { (filter as HTMLInputElement).checked = false;}
+);
   if (arrSortValue.length !== 0) {
-  select.dispatchEvent(new Event('change'));
-  getSort(arrSortValue);
+    if (arrSortValue[0] !== 'empty') {
+      select.dispatchEvent(new Event('change'));
+      getSort(arrSortValue);
+    }
   }
-  getChangeInBasket();
+  setLocalStorage();
+  changeStyles(goodsCopy.length);
   findActiveCards();
+  getChangeInBasket (document.querySelectorAll('.good-btn'));
 });

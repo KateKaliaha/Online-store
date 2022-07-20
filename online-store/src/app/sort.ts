@@ -4,11 +4,14 @@ import {arrAllFilters } from './filters';
 
 export const select = document.querySelector('.sort-list') as HTMLSelectElement;
 export const copyGoodsSort = [...goods];
-export const arrSortValue:string[] = [];
+export const arrSortValue:string[] = JSON.parse(localStorage.getItem('arrSortValue') as string) || [];
+
+
 
 select.addEventListener('change', function() {
   arrSortValue.splice(0, 1, this.value);
   renderContent(getSort(arrSortValue) as Chairs[], content);
+  localStorage.setItem('arrSortValue', JSON.stringify(arrSortValue));
 });
 
 function sortByPrice(goodCurr:Chairs, goodNext:Chairs) {

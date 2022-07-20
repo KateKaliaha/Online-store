@@ -5,15 +5,18 @@ import {changeStyles} from './slider';
 
 
 export const input= document.getElementById('q') as HTMLInputElement;
-
 let arrSearch: Array<Chairs> = [];
+if (localStorage.getItem('searchValue') ) {
+  input.innerHTML = localStorage.getItem('searchValue') as string;
+}
 
-export let searchInput:string;
+export let searchInput:string = (localStorage.getItem('searchValue') as string) || '';
 input.addEventListener('input', (event) => {
-  const searchValue = (event.target as HTMLInputElement).value.toLowerCase();
+  const searchValue =(event.target as HTMLInputElement).value.toLowerCase();
   searchInput = searchValue;
   getSearchList(searchInput, arrAllFilters);
   getAllFilters();
+  localStorage.setItem('searchValue', input.value);
   return searchInput;
 });
 

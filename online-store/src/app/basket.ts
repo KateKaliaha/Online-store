@@ -1,17 +1,22 @@
-export let countGoodsBasket = 0;
+
+export let countGoodsBasket = Number (JSON.parse(localStorage.getItem('countGoodsBasket') as string)) || 0;
 const boxCountGoods = document.querySelector('.basket-counter') as HTMLDivElement;
-let listBasketGoods: Array<string> = [];
+let listBasketGoods: Array<string> = JSON.parse(localStorage.getItem('listBasketGoods') as string) || [];
 
 function addGoodsToBasket (btnText: HTMLButtonElement) {
   btnText.innerHTML = 'Удалить из корзины';
   countGoodsBasket = countGoodsBasket + 1;
   listBasketGoods.push(((btnText.parentNode as HTMLDivElement).getAttribute('data-name'))as string);
+  localStorage.setItem('countGoodsBasket', JSON.stringify(countGoodsBasket));
+  localStorage.setItem('listBasketGoods', JSON.stringify(listBasketGoods));
 }
 
 function removeGoodsFromBasket (btnText: HTMLButtonElement) {
   btnText.innerHTML = 'Добавить в корзину';
   countGoodsBasket = countGoodsBasket - 1;
   listBasketGoods.splice(listBasketGoods.indexOf(((btnText.parentNode as HTMLDivElement).getAttribute('data-name'))as string), 1);
+  localStorage.setItem('countGoodsBasket', JSON.stringify(countGoodsBasket));
+  localStorage.setItem('listBasketGoods', JSON.stringify(listBasketGoods));
 }
 
 function toggleClassList(btnText: HTMLButtonElement) {
@@ -19,7 +24,7 @@ function toggleClassList(btnText: HTMLButtonElement) {
   (btnText.parentNode as HTMLDivElement).classList.toggle('active-card');
 }
 
-function drawQualityGoods (data:number) {
+export function drawQualityGoods (data:number) {
   if (data > 0 && data <=20) {
     boxCountGoods.style.display = 'block';
     boxCountGoods.innerHTML = `${data}`;
@@ -28,9 +33,9 @@ function drawQualityGoods (data:number) {
   }
 }
 
-export function getChangeInBasket () {
-  const btnBuyGoods = document.querySelectorAll('.good-btn');
-  btnBuyGoods.forEach((el) => el.addEventListener('click', e => {
+export function getChangeInBasket (btns:NodeListOf<Element>) {
+  btns.forEach((el) => el.addEventListener('click', e => {
+    console.log('hi');
     const btnCard = e.target as HTMLButtonElement;
     if (countGoodsBasket < 20){
       toggleClassList(btnCard);
@@ -52,7 +57,6 @@ export function getChangeInBasket () {
   }));
 }
 
-getChangeInBasket();
 
 export function findActiveCards() {
   const cards = document.querySelectorAll('.card');
@@ -74,6 +78,14 @@ export function resetBasket () {
   listBasketGoods = [];
   boxCountGoods.innerHTML = '';
   boxCountGoods.style.display = 'none';
-  getChangeInBasket ();
+  addEvent();
   findActiveCards();
 }
+
+export function addEvent () {
+  getChangeInBasket (document.querySelectorAll('.good-btn'));
+  findActiveCards();
+}
+
+getChangeInBasket (document.querySelectorAll('.good-btn'));
+addEvent ();

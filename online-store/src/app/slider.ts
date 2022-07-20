@@ -35,7 +35,7 @@ createSliders();
 export const minValueSliderQuantity = document.getElementById('min-value-quantity') as HTMLInputElement;
 export const maxValueSliderQuantity = document.getElementById('max-value-quantity') as HTMLInputElement;
 export const ValueSliderQuantity: Array<HTMLInputElement> = [minValueSliderQuantity, maxValueSliderQuantity];
-export let arrMinMaxSliders:Array<number> = [1, 15, 100, 1500];
+export let arrMinMaxSliders:Array<number> = JSON.parse(localStorage.getItem('arrSliderPrice') as string) || [1, 15, 100, 1500];
 
 
 sliderQuantity.noUiSlider?.on('update', function(values, handle: number): void {
@@ -61,6 +61,7 @@ sliderQuantity.noUiSlider?.on('change', function () {
     arrMinMaxSliders.push(Number(ValueSliderQuantity[0].value), Number(ValueSliderQuantity[1].value), arrSliderPrice[2], arrSliderPrice[3]);
     getAllFilters();
   }
+  localStorage.setItem('arrMinMaxSliders', JSON.stringify(arrMinMaxSliders));
 });
 
 sliderPrice.noUiSlider?.on('change', function () {
@@ -69,6 +70,7 @@ sliderPrice.noUiSlider?.on('change', function () {
     arrSliderPrice.push(arrMinMaxSliders[0], arrMinMaxSliders[1],Number(ValueSliderPrice[0].value), Number(ValueSliderPrice[1].value));
     arrMinMaxSliders = arrSliderPrice;
     getAllFilters();
+    localStorage.setItem('arrMinMaxSliders', JSON.stringify(arrMinMaxSliders));
   }
 });
 
@@ -82,3 +84,13 @@ export function changeStyles (length: number) {
   }
 }
 
+export function valueSlider () {
+  if (JSON.parse(localStorage.getItem('arrMinMaxSliders') as string)) {
+    const copyArrMinMaxSliders = JSON.parse(localStorage.getItem('arrMinMaxSliders') as string);
+    const valueQuantitySlider = copyArrMinMaxSliders.splice(0,2);
+    sliderQuantity.noUiSlider?.set(valueQuantitySlider);
+    sliderPrice.noUiSlider?.set(copyArrMinMaxSliders);
+  }
+}
+
+valueSlider();

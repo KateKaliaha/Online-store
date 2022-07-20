@@ -1,6 +1,6 @@
 import * as Goods from '../goods.json';
 import { Chairs } from './interfaces';
-
+// import { changeStyles } from './slider';
 
 export const goods:Array<Chairs>= Goods.chairs;
 export const goodsCopy = [...goods];
