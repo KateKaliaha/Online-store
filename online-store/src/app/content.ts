@@ -2,7 +2,7 @@ import * as Goods from '../goods.json';
 import { Chair } from './interfaces';
 
 export const goods:Array<Chair>= Goods.chairs;
-export const goodsCopy = [...goods];
+export const catalogGoods = [...goods];
 export const content = document.querySelector('.content') as HTMLElement;
 
 export function renderContent(_goods: Array<Chair>, wrapperForContent = document.body): void {

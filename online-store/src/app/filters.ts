@@ -1,5 +1,5 @@
 import {Chair} from './interfaces';
-import { renderContent, content, goodsCopy} from './content';
+import { renderContent, content, catalogGoods} from './content';
 import { arrMinMaxSliders, changeStyles} from './slider';
 import { getSort, arrSortValue, select} from './sort';
 import { getSearchList, searchInput, input} from './search';
@@ -73,8 +73,8 @@ export function getActiveFilters() {
 }
 
 export function resetArrAllFilters() {
-  filteredGoods = goodsCopy;
-  arrAllFilters = goodsCopy;
+  filteredGoods = catalogGoods;
+  arrAllFilters = catalogGoods;
   localStorage.setItem('filteredGoods', JSON.stringify(filteredGoods));
   localStorage.setItem('arrAllFilters', JSON.stringify(arrAllFilters));
 }
@@ -104,7 +104,7 @@ export function getFilterList(goods:Array<Chair>) {
 }
 
 export function getAllFilters() {
-  getFilterList(goodsCopy);
+  getFilterList(catalogGoods);
   arrAllFilters = filteredGoods;
 
   if (searchInput !== '') {

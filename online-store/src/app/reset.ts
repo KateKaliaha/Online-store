@@ -2,7 +2,7 @@ import { arrSellers, arrTypeChair, arrColors, arrPopular, setLocalStorage} from 
 import { sliderQuantity, sliderPrice, changeStyles} from './slider';
 import { arrSortValue, getSort, select} from './sort';
 import { resetArrAllFilters} from './filters';
-import { renderContent, goods, content, goodsCopy} from './content';
+import { renderContent, goods, content, catalogGoods} from './content';
 import { applyChangeInBasket, findActiveCards } from './basket';
 import { input } from './search';
 
@@ -32,7 +32,7 @@ btnReset?.addEventListener('click', () => {
   }
 
   setLocalStorage();
-  changeStyles(goodsCopy.length);
+  changeStyles(catalogGoods.length);
   findActiveCards();
   applyChangeInBasket (document.querySelectorAll('.good-btn'));
 });

@@ -1,5 +1,5 @@
 import {Chair} from './interfaces';
-import { goodsCopy} from './content';
+import { catalogGoods} from './content';
 import { getAllFilters,arrAllFilters} from './filters';
 import {changeStyles} from './slider';
 
@@ -24,7 +24,7 @@ export function getSearchList(inputText:string, goodsArray: Array<Chair>) {
   arrSearch = [];
 
   if (goodsArray.length === 0) {
-    goodsArray = goodsCopy;
+    goodsArray = catalogGoods;
 
     if (inputText !== '') {
       goodsArray.forEach((good) => {
