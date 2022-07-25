@@ -1,4 +1,4 @@
-export interface Chairs {
+export interface Chair {
   name: string;
   seller: string;
   price: number;

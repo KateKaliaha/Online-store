@@ -8,10 +8,10 @@ import { countGoodsBasket, resetBasket} from './basket';
 const btnClearAll = document.querySelector('.reset-all');
 
 btnClearAll?.addEventListener('click', () => {
-  arrColors.length = 0;
   arrTypeChair.length = 0;
   arrSellers.length = 0;
   arrPopular.length = 0;
+  arrColors.length = 0;
   countGoodsBasket === 0;
   filters.forEach((filter) => {
     (filter as HTMLInputElement).checked = false;}

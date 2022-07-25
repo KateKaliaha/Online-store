@@ -3,7 +3,7 @@ import { sliderQuantity, sliderPrice, changeStyles} from './slider';
 import { arrSortValue, getSort, select} from './sort';
 import { resetArrAllFilters} from './filters';
 import { renderContent, goods, content, goodsCopy} from './content';
-import { getChangeInBasket, findActiveCards } from './basket';
+import { applyChangeInBasket, findActiveCards } from './basket';
 import { input } from './search';
 
 const btnReset = document.querySelector('.reset-filters');
@@ -19,17 +19,20 @@ btnReset?.addEventListener('click', () => {
   resetArrAllFilters();
   input.value = '';
   renderContent(goods, content);
-  document.querySelectorAll('.filter-checkbox').forEach((filter) => 
-  { (filter as HTMLInputElement).checked = false;}
-);
+
+  document.querySelectorAll('.filter-checkbox').forEach((filter) => {
+    (filter as HTMLInputElement).checked = false;
+  });
+
   if (arrSortValue.length !== 0) {
     if (arrSortValue[0] !== 'empty') {
       select.dispatchEvent(new Event('change'));
       getSort(arrSortValue);
     }
   }
+
   setLocalStorage();
   changeStyles(goodsCopy.length);
   findActiveCards();
-  getChangeInBasket (document.querySelectorAll('.good-btn'));
+  applyChangeInBasket (document.querySelectorAll('.good-btn'));
 });

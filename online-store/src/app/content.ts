@@ -1,38 +1,40 @@
 import * as Goods from '../goods.json';
-import { Chairs } from './interfaces';
-// import { changeStyles } from './slider';
+import { Chair } from './interfaces';
 
-export const goods:Array<Chairs>= Goods.chairs;
+export const goods:Array<Chair>= Goods.chairs;
 export const goodsCopy = [...goods];
 export const content = document.querySelector('.content') as HTMLElement;
 
-export function renderContent(_goods: Array<Chairs>,el=document.body): void {
-  el.innerHTML='';
-  _goods.forEach(i=>{
+export function renderContent(_goods: Array<Chair>, wrapperForContent = document.body): void {
+  wrapperForContent.innerHTML='';
+
+  _goods.forEach((good) => {
     const fragment:HTMLDivElement = document.createElement('div');
-    fragment.setAttribute('data-price', `${i.price}`);
-    fragment.setAttribute('data-name', `${i.name}`);
+    fragment.setAttribute('data-price', `${good.price}`);
+    fragment.setAttribute('data-name', `${good.name}`);
     fragment.className = 'card';
     fragment.innerHTML = ` <div class="good-picture">
-                          <img class="good-picture-img" src="${i.img}" alt = "Type of chair">
+                          <img class="good-picture-img" src="${good.img}" alt = "Type of chair">
                           </div>
                           <div class="good-content">
-                          <h3 class="good-name">${i.name}</h3>
-                          <p> продавец: ${i.seller}</p>
-                          <p>стоимость: ${i.price} BYN</p>
-                          <p>${i.type}, сиденье: ${i.seat}, каркас: ${i.frame}</p>
-                          <p>цвет: ${i.color}</p>
-                          <p>остаток на складе: ${i.quality}шт.</p>
+                          <h3 class="good-name">${good.name}</h3>
+                          <p>продавец: ${good.seller}</p>
+                          <p>стоимость: ${good.price} BYN</p>
+                          <p>${good.type}, сиденье: ${good.seat}, каркас: ${good.frame}</p>
+                          <p>цвет: ${good.color}</p>
+                          <p>остаток на складе: ${good.quality}шт.</p>
                           <p class="popular-good"></p>
                           </div>
                           <button class="good-btn btn">Добавить в корзину</button>`;
-    if (i.popular === 'true') {
-      const p = fragment.querySelector('.popular-good');
-      if(p) {
-        p.innerHTML = 'Выбор покупателей';
+
+    if (good.popular === 'true') {
+      const paragraphPopular = fragment.querySelector('.popular-good');
+      if(paragraphPopular) {
+        paragraphPopular.innerHTML = 'Выбор покупателей';
       }
     }
-    el.appendChild(fragment);
+
+    wrapperForContent.appendChild(fragment);
   });
 }
 
