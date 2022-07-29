@@ -1,4 +1,4 @@
-import {getCars, getHead} from '../model/cars';
+import {getCars, getHead} from '../model/appCarsGet';
 
 getCars();
 getHead();
