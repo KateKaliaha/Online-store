@@ -1,3 +1,5 @@
+@import './styles/cars.css';
+
 body {
     background-color: black;
 }
@@ -19,6 +21,10 @@ body {
     margin-bottom: 10px;
 }
 
+.btn-active-wrapper {
+    margin-bottom: 40px;
+}
+
 .to-garage,
 .to-winners {
     border: none;
@@ -29,7 +35,9 @@ body {
 }
 
 .race,
-.reset {
+.reset,
+.prev,
+.next {
     padding: 0;
     border: none;
     width: 60px;
@@ -41,14 +49,14 @@ body {
 
 .create,
 .update,
-.generate-cards {
+.generate-cars {
     border: none;
     cursor: pointer;
     border-radius: 8%;
     background-color: #babdbd;
 }
 
-.generate-cards {
+.generate-cars {
     height: 20px;
 }
 
@@ -60,4 +68,11 @@ transition: all 0.3s ease;
 .create-input-color,
 .update-input-color {
     padding: 0;
+}
+
+.page-switch-btn-wrapper {
+    display: flex;
+    width: 130px;
+    justify-content: space-between;
+    margin-bottom: 10px;
 }

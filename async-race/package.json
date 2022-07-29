@@ -6,7 +6,7 @@
     "start": "webpack-dev-server",
     "build": "webpack",
     "eslint": "eslint",
-    "deploy": "gh-pages -d ./dist -e online-store"
+    "deploy": "gh-pages -d ./dist -e async-race"
   },
   "author": "Katherina Kaliaha",
   "license": "ISC",
