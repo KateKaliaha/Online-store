@@ -1,5 +1,3 @@
-import { renderApp } from '../views/renderApp';
-
 export const getCars = async (page: number, limit = 10) => {
     const res = await fetch(`http://localhost:3000/garage?_limit=${limit}&_page=${page}`);
 
@@ -8,18 +6,6 @@ export const getCars = async (page: number, limit = 10) => {
 };
 
 export let {allCars: cars, countAllCars: count} = await getCars(1);
-
-export function listenEvent() {
-    document.body.addEventListener('click', async (event) => {
-        if ((event.target as HTMLButtonElement).classList.contains('remove-btn')) {
-            const id = (event.target as HTMLButtonElement).id.split('remove-')[1];
-            await deleteCar(id);
-            await updateGarage();
-            await renderApp();
-            console.log(cars, count);
-        }
-    });
-}
 
 export async function deleteCar(id:string) {
     const res = await fetch (`http://localhost:3000/garage/${id}`, {
@@ -30,9 +16,7 @@ export async function deleteCar(id:string) {
     });
     const data = await res.json();
 
-    if (data) {
-        document.getElementById(`car-${id}`)?.remove();
-    }
+    return data;
 }
 
 export const updateGarage = async () => {
@@ -40,3 +24,21 @@ export const updateGarage = async () => {
     cars = [...allCars];
     count = countAllCars;
 };
+
+export async function createCar() {
+    const inputText = document.querySelector('.create-input-text') as HTMLInputElement;
+    const title = inputText.value;
+    const inputColor = document.querySelector('.create-input-color') as HTMLInputElement;
+    const color = inputColor.value;
+    const res = await fetch('http://localhost:3000/garage/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({name:title, color})
+    });
+    inputText.value = '';
+    console.log(inputColor.value);
+    return await res.json();
+}
+

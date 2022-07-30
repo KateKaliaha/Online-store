@@ -1,4 +1,4 @@
-import { cars, count} from '../model/appCarsGet';
+import { cars, count} from '../model/manageGarage';
 
 export interface Car {
     color: string,
@@ -49,23 +49,22 @@ function renderCar({id, name, color}:Car) {
 }
 
 export function renderPageGarage() {
-    const garagePage = `
-    <div class="create-block-wrapper">
-    <input class="create-input-text" type=text></input>
-    <input class="create-input-color" type=color value="#7A45BA"></input>
-    <button class="create">CREATE</button>
-    </div>
-    <div class="update-block-wrapper">
-    <input class="update-input-text" type=text></input>
-    <input class="update-input-color" type=color value="#45BAB8"></input>
-    <button class="update">UPDATE</button>
-    </div>
-    <div class="btn-active-wrapper">
-    <button class="race">RACE</button>
-    <button class="reset">RESET</button>
-    <button class="generate-cars">GENERATE CARS</button>
-    </div>
-    <div class="garage-wrapper">${renderViewGarage()}</div>`;
+    const garagePage = `<div class="create-block-wrapper">
+                            <input class="create-input-text" type=text></input>
+                            <input class="create-input-color" type=color value="#7A45BA"></input>
+                            <button class="create">CREATE</button>
+                        </div>
+                        <div class="update-block-wrapper">
+                            <input class="update-input-text" type=text></input>
+                            <input class="update-input-color" type=color value="#45BAB8"></input>
+                            <button class="update">UPDATE</button>
+                        </div>
+                        <div class="btn-active-wrapper">
+                            <button class="race">RACE</button>
+                            <button class="reset">RESET</button>
+                            <button class="generate-cars">GENERATE CARS</button>
+                        </div>
+                        <div class="garage-wrapper">${renderViewGarage()}</div>`;
 
     return garagePage;
 }
