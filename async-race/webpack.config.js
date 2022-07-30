@@ -12,6 +12,9 @@ module.exports = {
     assetModuleFilename: 'assets/[hash][ext][query]',
     clean: true,
 },
+experiments: {
+    topLevelAwait: true
+  },
   devServer: {
     port: 4000,
     open: true,

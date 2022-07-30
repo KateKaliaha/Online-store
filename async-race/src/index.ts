@@ -1,7 +1,7 @@
 import './style.css';
-import './views/createBtns';
+import './views/renderApp';
 import './model/appCarsGet';
-import './views/createCars';
+import './views/renderGarage';
 import './controllers/loadPageController';
 
 

@@ -1,28 +1,27 @@
-import { renderCar, renderNumberCarAndPage } from '../views/createCars';
+import { renderApp } from '../views/renderApp';
 
-const carsWrapper = document.querySelector('.cars-wrapper') as HTMLDivElement;
-const countWrapper = document.querySelector('.count-wrapper') as HTMLDivElement;
-const numberPage = 1;
+export const getCars = async (page: number, limit = 10) => {
+    const res = await fetch(`http://localhost:3000/garage?_limit=${limit}&_page=${page}`);
 
-export const getCars = async () => {
-    const res = await fetch('http://localhost:3000/garage/');
-    const data = await res.json();
-    renderCar(data, carsWrapper);
-
-    //Delete car
-    const removeBtns = document.querySelectorAll('.remove-btn');
-    removeBtns.forEach((btn) => btn.addEventListener('click', () => deleteCar(getIdCar(btn as Element) as string)));
+    return {allCars: await res.json(),
+            countAllCars: res.headers.get('X-Total-Count')};
 };
 
-export const getHead = async () => {
-    const res = await fetch('http://localhost:3000/garage?_limit=10', {
-        method: 'HEAD',
+export let {allCars: cars, countAllCars: count} = await getCars(1);
+
+export function listenEvent() {
+    document.body.addEventListener('click', async (event) => {
+        if ((event.target as HTMLButtonElement).classList.contains('remove-btn')) {
+            const id = (event.target as HTMLButtonElement).id.split('remove-')[1];
+            await deleteCar(id);
+            await updateGarage();
+            await renderApp();
+            console.log(cars, count);
+        }
     });
-    const numberCarInGarage = res.headers.get('X-Total-Count');
-    renderNumberCarAndPage(numberCarInGarage as string, numberPage, countWrapper);
-};
+}
 
-async function deleteCar(id:string) {
+export async function deleteCar(id:string) {
     const res = await fetch (`http://localhost:3000/garage/${id}`, {
         method: 'DELETE',
         headers: {
@@ -32,13 +31,12 @@ async function deleteCar(id:string) {
     const data = await res.json();
 
     if (data) {
-        document.getElementById(`${id}`)?.remove();
+        document.getElementById(`car-${id}`)?.remove();
     }
 }
 
-function getIdCar(btn:Element) {
-    const parent = btn.parentElement?.parentElement;
-    const id = parent?.getAttribute('id');
-
-    return id;
-}
+export const updateGarage = async () => {
+    const {allCars, countAllCars} = await getCars(1);
+    cars = [...allCars];
+    count = countAllCars;
+};

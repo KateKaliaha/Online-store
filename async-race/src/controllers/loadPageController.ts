@@ -1,4 +1,6 @@
-import {getCars, getHead} from '../model/appCarsGet';
+import {renderApp} from '../views/renderApp';
+import {listenEvent} from '../model/appCarsGet';
 
-getCars();
-getHead();
+renderApp();
+
+listenEvent();

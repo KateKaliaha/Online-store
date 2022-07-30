@@ -75,4 +75,5 @@ transition: all 0.3s ease;
     width: 130px;
     justify-content: space-between;
     margin-bottom: 10px;
+    margin-top: 10px;
 }
