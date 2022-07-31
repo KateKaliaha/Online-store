@@ -33,19 +33,15 @@ export const updateGarage = async () => {
     count = countAllCars;
 };
 
-export async function createCar() {
-    const inputText = document.querySelector('.create-input-text') as HTMLInputElement;
-    const title = inputText.value;
-    const inputColor = document.querySelector('.create-input-color') as HTMLInputElement;
-    const color = inputColor.value;
+export async function createCar(body: {name:string, color:string}) {
+
     const res = await fetch('http://localhost:3000/garage/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({name:title, color})
+        body: JSON.stringify(body)
     });
-    inputText.value = '';
 
     return await res.json();
 }

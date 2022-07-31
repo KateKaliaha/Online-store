@@ -1,7 +1,9 @@
 import {renderApp} from '../views/renderApp';
 import {deleteCar, updateGarage, createCar, getCar,  updateCar} from '../model/manageGarage';
+import { generateRandomCars } from '../model/createRandomCar';
 
 export let chooseCar = {name: '', color: '', id: 0};
+const amountAddCarsToPage = 100;
 
 export function listenEvent() {
     document.body.addEventListener('click', async (event) => {
@@ -15,9 +17,14 @@ export function listenEvent() {
 
     document.body.addEventListener('click', async (event) => {
         if ((event.target as HTMLButtonElement).classList.contains('create')) {
-            await createCar();
+            const inputText = document.querySelector('.create-input-text') as HTMLInputElement;
+            const title = inputText.value;
+            const inputColor = document.querySelector('.create-input-color') as HTMLInputElement;
+            const color = inputColor.value;
+            await createCar({name:title, color});
             await updateGarage();
             await renderApp();
+            inputText.value = '';
         }
     });
 
@@ -28,8 +35,6 @@ export function listenEvent() {
             updateText.value = chooseCar.name;
             const updateColor = document.querySelector('.update-input-color') as HTMLInputElement;
             updateColor.value = chooseCar.color;
-
-            console.log( chooseCar.id);
         }
     });
 
@@ -39,6 +44,16 @@ export function listenEvent() {
             await updateGarage();
             await renderApp();
             chooseCar = {name: '', color: '', id: 0};
+        }
+    });
+
+    document.body.addEventListener('click', async (event) => {
+        if ((event.target as HTMLButtonElement).classList.contains('generate-cars')) {
+            const newCars = generateRandomCars(amountAddCarsToPage);
+            console.log(newCars.map( async (car) => console.log (car)));
+            await Promise.all(newCars.map( async (car) => await createCar(car)));
+            await updateGarage();
+            await renderApp();
         }
     });
 }
