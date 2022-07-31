@@ -33,21 +33,16 @@ export const updateGarage = async () => {
     cars = [...allCars];
     count = countAllCars;
 
-    console.log((document.querySelector('.next') as HTMLButtonElement));
     if (page * 10 < Number(count)) {
         (document.querySelector('.next') as HTMLButtonElement).disabled = false;
-        console.log((document.querySelector('.next') as HTMLButtonElement).disabled);
     } else {
         (document.querySelector('.next') as HTMLButtonElement).disabled = true;
-        console.log((document.querySelector('.next') as HTMLButtonElement).disabled);
     }
 
     if (page > 1) {
         (document.querySelector('.prev') as HTMLButtonElement).disabled = false;
-        console.log((document.querySelector('.prev') as HTMLButtonElement).disabled);
     } else {
         (document.querySelector('.prev') as HTMLButtonElement).disabled = true;
-        console.log((document.querySelector('.prev') as HTMLButtonElement).disabled);
     }
 };
 
