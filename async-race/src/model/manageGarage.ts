@@ -1,3 +1,5 @@
+import { Car } from '../views/renderGarage';
+
 export const getCars = async (page: number, limit = 10) => {
     const res = await fetch(`http://localhost:3000/garage?_limit=${limit}&_page=${page}`);
 
@@ -6,6 +8,12 @@ export const getCars = async (page: number, limit = 10) => {
 };
 
 export let {allCars: cars, countAllCars: count} = await getCars(1);
+
+export const getCar = async (id:string) => {
+    const res:Car = await (await fetch(`http://localhost:3000/garage/${id}`)).json();
+
+    return res;
+};
 
 export async function deleteCar(id:string) {
     const res = await fetch (`http://localhost:3000/garage/${id}`, {
@@ -38,7 +46,7 @@ export async function createCar() {
         body: JSON.stringify({name:title, color})
     });
     inputText.value = '';
-    console.log(inputColor.value);
+
     return await res.json();
 }
 
