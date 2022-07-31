@@ -1,9 +1,12 @@
 import './style.css';
-import {renderApp} from './views/renderApp';
-import {listenEvent} from './controllers/catchEvents';
+import { renderAllBlocks } from './views/renderApp';
+import { listenEvent } from './controllers/catchEvents';
+import { updateGarage } from './model/manageGarage';
 import './model/createRandomCar';
 
-renderApp();
+renderAllBlocks();
+
+await updateGarage();
 
 listenEvent();
 

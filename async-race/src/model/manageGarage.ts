@@ -1,4 +1,5 @@
 import { Car } from '../views/renderGarage';
+import { page } from '../controllers/catchEvents';
 
 export const getCars = async (page: number, limit = 10) => {
     const res = await fetch(`http://localhost:3000/garage?_limit=${limit}&_page=${page}`);
@@ -7,7 +8,7 @@ export const getCars = async (page: number, limit = 10) => {
             countAllCars: res.headers.get('X-Total-Count')};
 };
 
-export let {allCars: cars, countAllCars: count} = await getCars(1);
+export let {allCars: cars, countAllCars: count} = await getCars(page);
 
 export const getCar = async (id:string) => {
     const res:Car = await (await fetch(`http://localhost:3000/garage/${id}`)).json();
@@ -28,9 +29,26 @@ export async function deleteCar(id:string) {
 }
 
 export const updateGarage = async () => {
-    const {allCars, countAllCars} = await getCars(1);
+    const {allCars, countAllCars} = await getCars(page);
     cars = [...allCars];
     count = countAllCars;
+
+    console.log((document.querySelector('.next') as HTMLButtonElement));
+    if (page * 10 < Number(count)) {
+        (document.querySelector('.next') as HTMLButtonElement).disabled = false;
+        console.log((document.querySelector('.next') as HTMLButtonElement).disabled);
+    } else {
+        (document.querySelector('.next') as HTMLButtonElement).disabled = true;
+        console.log((document.querySelector('.next') as HTMLButtonElement).disabled);
+    }
+
+    if (page > 1) {
+        (document.querySelector('.prev') as HTMLButtonElement).disabled = false;
+        console.log((document.querySelector('.prev') as HTMLButtonElement).disabled);
+    } else {
+        (document.querySelector('.prev') as HTMLButtonElement).disabled = true;
+        console.log((document.querySelector('.prev') as HTMLButtonElement).disabled);
+    }
 };
 
 export async function createCar(body: {name:string, color:string}) {

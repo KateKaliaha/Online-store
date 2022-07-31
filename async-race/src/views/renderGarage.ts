@@ -1,12 +1,11 @@
 import { cars, count} from '../model/manageGarage';
+import {page} from '../controllers/catchEvents';
 
 export interface Car {
     color: string,
     id: number,
     name: string
 }
-
-const page = 1;
 
 function renderViewGarage () {
     const numberCarAndPagesInGarage = `<div class="number-car">Garage (${count})</div>

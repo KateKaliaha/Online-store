@@ -77,3 +77,15 @@ transition: all 0.3s ease;
     margin-bottom: 10px;
     margin-top: 10px;
 }
+
+button:disabled {
+    background: none;
+    border: 1px solid #35393a;
+    color: #35393a;
+    cursor: default;
+}
+
+button:active:disabled {
+    transform: none;
+    transition: none;
+}

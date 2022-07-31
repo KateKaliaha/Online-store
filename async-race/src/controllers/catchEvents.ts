@@ -2,6 +2,7 @@ import {renderApp} from '../views/renderApp';
 import {deleteCar, updateGarage, createCar, getCar,  updateCar} from '../model/manageGarage';
 import { generateRandomCars } from '../model/createRandomCar';
 
+export let page = 1;
 export let chooseCar = {name: '', color: '', id: 0};
 const amountAddCarsToPage = 100;
 
@@ -50,8 +51,21 @@ export function listenEvent() {
     document.body.addEventListener('click', async (event) => {
         if ((event.target as HTMLButtonElement).classList.contains('generate-cars')) {
             const newCars = generateRandomCars(amountAddCarsToPage);
-            console.log(newCars.map( async (car) => console.log (car)));
             await Promise.all(newCars.map( async (car) => await createCar(car)));
+            await updateGarage();
+            await renderApp();
+        }
+    });
+
+    document.body.addEventListener('click', async (event) => {
+        if ((event.target as HTMLButtonElement).classList.contains('next')) {
+            page = page + 1;
+            await updateGarage();
+            await renderApp();
+        }
+        
+        if ((event.target as HTMLButtonElement).classList.contains('prev')) {
+            page = page - 1;
             await updateGarage();
             await renderApp();
         }

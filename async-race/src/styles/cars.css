@@ -41,18 +41,6 @@ li {
     color: #A4E5E1;
 }
 
-button:disabled {
-    background: none;
-    border: 1px solid #35393a;
-    color: #35393a;
-    cursor: default;
-}
-
-button:active:disabled {
-    transform: none;
-    transition: none;
-}
-
 .select-btn,
 .remove-btn {
     border: none;
@@ -70,7 +58,7 @@ button:active:disabled {
 .number-car,
 .number-page {
     color: #ffffff;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .number-car {
@@ -89,3 +77,4 @@ button:active:disabled {
     left: 87%;
     z-index: 5;
 }
+
