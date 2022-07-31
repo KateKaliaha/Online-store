@@ -1,5 +1,5 @@
 import {renderApp} from '../views/renderApp';
-import {deleteCar, updateGarage, createCar, getCar} from '../model/manageGarage';
+import {deleteCar, updateGarage, createCar, getCar,  updateCar} from '../model/manageGarage';
 
 export let chooseCar = {name: '', color: '', id: 0};
 
@@ -28,7 +28,17 @@ export function listenEvent() {
             updateText.value = chooseCar.name;
             const updateColor = document.querySelector('.update-input-color') as HTMLInputElement;
             updateColor.value = chooseCar.color;
-            console.log( updateColor.value, updateText.value);
+
+            console.log( chooseCar.id);
+        }
+    });
+
+    document.body.addEventListener('click', async (event) => {
+        if ((event.target as HTMLButtonElement).classList.contains('update')) {
+            await updateCar(chooseCar.id.toString());
+            await updateGarage();
+            await renderApp();
+            chooseCar = {name: '', color: '', id: 0};
         }
     });
 }

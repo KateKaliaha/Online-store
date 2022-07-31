@@ -50,3 +50,21 @@ export async function createCar() {
     return await res.json();
 }
 
+export async function updateCar(id:string) {
+    const inputText = document.querySelector('.update-input-text') as HTMLInputElement;
+    const title = inputText.value;
+    const inputColor = document.querySelector('.update-input-color') as HTMLInputElement;
+    const color = inputColor.value;
+    const res = await fetch(`http://localhost:3000/garage/${id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({name:title, color})
+    });
+    inputText.value = '';
+    inputColor.value = '#45BAB8';
+
+    return await res.json();
+}
+
