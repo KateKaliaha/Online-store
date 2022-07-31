@@ -1,7 +1,7 @@
 import { Car } from '../views/renderGarage';
 import { page } from '../controllers/catchEvents';
 
-export const getCars = async (page: number, limit = 10) => {
+export const getCars = async (page: number, limit = 7) => {
     const res = await fetch(`http://localhost:3000/garage?_limit=${limit}&_page=${page}`);
 
     return {allCars: await res.json(),
@@ -33,7 +33,7 @@ export const updateGarage = async () => {
     cars = [...allCars];
     count = countAllCars;
 
-    if (page * 10 < Number(count)) {
+    if (page * 7 < Number(count)) {
         (document.querySelector('.next') as HTMLButtonElement).disabled = false;
     } else {
         (document.querySelector('.next') as HTMLButtonElement).disabled = true;
