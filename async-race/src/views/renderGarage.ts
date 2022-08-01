@@ -24,8 +24,9 @@ function renderCar({id, name, color}:Car) {
                                 <button class="remove-btn" id="remove-${id}">REMOVE</button>
                             ${name}</div>
                             <div class="btn-move-car">
-                                <button class="start-btn active">A</button>
-                                <button class="finish-btn" disabled>B</button>
+                                <button class="start-btn active" id="start-btn-${id}">A</button>
+                                <button class="finish-btn" id="finish-btn-${id}" disabled>B</button>
+                                <div class="image-car" id="image-car-${id}">
                                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                 width="60px" viewBox="0 0 79.536 79.536" style="enable-background:new 0 0 79.536 79.536;"
                                 xml:space="preserve">
@@ -40,7 +41,8 @@ function renderCar({id, name, color}:Car) {
                                 c0-4.908,3.982-8.885,8.878-8.885c4.914,0,8.886,3.977,8.886,8.885h30.827c0-4.908,3.967-8.885,8.892-8.885
                                 c4.898,0,8.875,3.977,8.875,8.885h6.524v-5.396H78.138z M35.589,34.191H21.751c1.872-5.831,5.339-9.994,6.801-9.994
                                 c1.841,0,7.037,0,7.037,0V34.191z M38.168,34.191v-9.994c0,0,7.141,0,8.974,0c1.854,0,5.893,8.461,7.032,10.625L38.168,34.191z"/>
-                                <img class="flag" src="./assets/flag.png" alt="Image flag for finish car"></img>
+                                </div>
+                                <img class="flag" id="flag-${id}"src="./assets/flag.png" alt="Image flag for finish car"></img>
                             </div>
                         </div>`;
 
