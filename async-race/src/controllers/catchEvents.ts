@@ -1,7 +1,9 @@
 import {renderApp} from '../views/renderApp';
 import {deleteCar, updateGarage, createCar, getCar,  updateCar} from '../model/manageGarage';
 import { generateRandomCars } from '../model/createRandomCar';
-import { startRace, stopRace } from '../model/race';
+import { raceAllCars, startRace, stopRace } from '../model/race';
+// import { cars } from '../model/manageGarage';
+// import {Car} from '../views/renderGarage';
 
 export let page = 1;
 export let chooseCar = {name: '', color: '', id: 0};
@@ -83,6 +85,12 @@ export function listenEvent() {
         if ((event.target as HTMLButtonElement).classList.contains('finish-btn')) {
             const id = (event.target as HTMLButtonElement).id.split('finish-btn-')[1];
             stopRace(id);
+        }
+    });
+
+    document.body.addEventListener('click', async (event) => {
+        if ((event.target as HTMLButtonElement).classList.contains('race')) {
+            raceAllCars();
         }
     });
 }

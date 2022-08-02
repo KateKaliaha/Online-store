@@ -1,4 +1,9 @@
-let request:number;
+import { cars } from '../model/manageGarage';
+import {Car} from '../views/renderGarage';
+
+let request = 0;
+
+// const a = {id: cars.id as string, request: 0};
 
 async function startEngine(id:string) {
     const res = await fetch (`http://localhost:3000/engine?id=${id}&status=started`, {
@@ -39,18 +44,21 @@ async function driveCar(id:string) {
 export async function startRace(id:string) {
     const startButton = document.getElementById(`start-btn-${id}`) as HTMLButtonElement;
     const finishButton = document.getElementById(`finish-btn-${id}`) as HTMLButtonElement;
+    const car = document.getElementById(`image-car-${id}`) as HTMLDivElement;
     startButton.disabled = true;
     const {velocity, distance} = await startEngine(id);
     const timeRace = Math.round(distance / velocity);
     finishButton.disabled = false;
-    animation(timeRace, id);
+
+    animation(car, timeRace, id);
+
     const {success} = await driveCar(id);
 
-    if (!success) {
-        window.cancelAnimationFrame(request);
+    if (success === false) {
+        window.cancelAnimationFrame(request );
     }
 
-    return {success, timeRace, id};
+    return { id, success, timeRace};
 }
 
 export async function stopRace(id:string) {
@@ -66,11 +74,11 @@ export async function stopRace(id:string) {
     await stopEngine(id);
     car.style.transform = 'translateX(0px)';
     startButton.disabled = false;
-
 }
 
-export function animation(duration:number, id:string) {
-    const car = document.getElementById(`image-car-${id}`) as HTMLDivElement;
+export function animation(car:HTMLDivElement,duration:number, id:string) {
+
+    // const car = document.getElementById(`image-car-${id}`) as HTMLDivElement;
     const flag = document.getElementById(`flag-${id}`) as HTMLDivElement;
     const endPoint = flag.offsetLeft- 25;
     let currentPositionCar: number = car.offsetLeft;
@@ -93,4 +101,11 @@ export function animation(duration:number, id:string) {
     }
 
     request = window.requestAnimationFrame(stepAnimation);
+
+    return request;
 }
+
+export async function raceAllCars() {
+    cars.map((car:Car) => {startRace((car.id).toString());});
+}
+
