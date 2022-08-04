@@ -8,8 +8,9 @@ export const getCars = async (page: number, limit = 7) => {
             countAllCars: res.headers.get('X-Total-Count')};
 };
 
-export let {allCars: cars, countAllCars: count} = await getCars(page);
 
+export let {allCars: cars, countAllCars: count} = await getCars(page);
+cars.request = 0;
 export const getCar = async (id:string) => {
     const res:Car = await (await fetch(`http://localhost:3000/garage/${id}`)).json();
 

@@ -31,7 +31,8 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "gh-pages": "^4.0.0",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "promise-any-polyfill": "^1.0.1"
   },
   "description": ""
 }

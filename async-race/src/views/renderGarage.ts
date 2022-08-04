@@ -4,7 +4,8 @@ import {page} from '../controllers/catchEvents';
 export interface Car {
     color: string,
     id: number,
-    name: string
+    name: string,
+    request: number
 }
 
 function renderViewGarage () {
@@ -62,7 +63,7 @@ export function renderPageGarage() {
                         </div>
                         <div class="btn-active-wrapper">
                             <button class="race">RACE</button>
-                            <button class="reset">RESET</button>
+                            <button class="reset" disabled>RESET</button>
                             <button class="generate-cars">GENERATE CARS</button>
                         </div>
                         <div class="garage-wrapper">${renderViewGarage()}</div>`;

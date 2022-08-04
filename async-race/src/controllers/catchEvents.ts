@@ -1,9 +1,7 @@
 import {renderApp} from '../views/renderApp';
 import {deleteCar, updateGarage, createCar, getCar,  updateCar} from '../model/manageGarage';
 import { generateRandomCars } from '../model/createRandomCar';
-import { raceAllCars, startRace, stopRace } from '../model/race';
-// import { cars } from '../model/manageGarage';
-// import {Car} from '../views/renderGarage';
+import { raceAllCars, startRace, stopRace, stopRaceAllCars} from '../model/race';
 
 export let page = 1;
 export let chooseCar = {name: '', color: '', id: 0};
@@ -66,7 +64,7 @@ export function listenEvent() {
             await updateGarage();
             await renderApp();
         }
-        
+
         if ((event.target as HTMLButtonElement).classList.contains('prev')) {
             page = page - 1;
             await updateGarage();
@@ -90,7 +88,22 @@ export function listenEvent() {
 
     document.body.addEventListener('click', async (event) => {
         if ((event.target as HTMLButtonElement).classList.contains('race')) {
-            raceAllCars();
+            (event.target as HTMLButtonElement).disabled = true;
+            (document.querySelector('.reset') as HTMLButtonElement).disabled = false;
+            const winner = await raceAllCars();
+
+            if (winner) {
+                console.log(winner);
+            }
+
+        }
+    });
+
+    document.body.addEventListener('click', async (event) => {
+        if ((event.target as HTMLButtonElement).classList.contains('reset')) {
+            (event.target as HTMLButtonElement).disabled = true;
+            await stopRaceAllCars();
+            (document.querySelector('.race') as HTMLButtonElement).disabled = false;
         }
     });
 }
