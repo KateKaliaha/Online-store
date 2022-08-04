@@ -1,7 +1,21 @@
 @import './styles/cars.css';
+@import './styles/message.css';
 
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100wv;
+}
 body {
     background-color: black;
+
+}
+
+.garage-view {
+    width: 100wv;
 }
 
 .page-btn-wrapper {

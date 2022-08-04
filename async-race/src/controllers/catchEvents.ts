@@ -2,6 +2,7 @@ import {renderApp} from '../views/renderApp';
 import {deleteCar, updateGarage, createCar, getCar,  updateCar} from '../model/manageGarage';
 import { generateRandomCars } from '../model/createRandomCar';
 import { raceAllCars, startRace, stopRace, stopRaceAllCars} from '../model/race';
+import { addWinner } from '../model/manageWinners';
 
 export let page = 1;
 export let chooseCar = {name: '', color: '', id: 0};
@@ -91,11 +92,12 @@ export function listenEvent() {
             (event.target as HTMLButtonElement).disabled = true;
             (document.querySelector('.reset') as HTMLButtonElement).disabled = false;
             const winner = await raceAllCars();
+            await addWinner(winner);
 
-            if (winner) {
-                console.log(winner);
-            }
+            const message = document.getElementById('message') as HTMLDivElement;
 
+            message.style.display = 'block';
+            message.innerHTML = `${winner.win.name} went first (time: ${winner.time} sec)`;
         }
     });
 
@@ -104,6 +106,9 @@ export function listenEvent() {
             (event.target as HTMLButtonElement).disabled = true;
             await stopRaceAllCars();
             (document.querySelector('.race') as HTMLButtonElement).disabled = false;
+            const message = document.getElementById('message') as HTMLDivElement;
+            message.style.display = 'none';
+            message.innerHTML = '';
         }
     });
 }

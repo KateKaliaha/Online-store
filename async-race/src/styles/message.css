@@ -1,0 +1,10 @@
+.message {
+    display: none;
+    position: absolute;
+    top: 25%;
+    left: 30%;
+    color: #D4A017;
+    font-size: 50px;
+    font-weight: bold;
+    font-style: italic;
+}

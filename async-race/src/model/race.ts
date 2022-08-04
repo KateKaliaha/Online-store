@@ -7,7 +7,7 @@ interface ResultPromise {
     success: boolean;
 }
 
-const animateRequest:Record<string, number>[] = [];
+const animateRequest:Record<string,number>[] = [];
 
 async function startEngine(id:string) {
     const res = await fetch (`http://localhost:3000/engine?id=${id}&status=started`, {
@@ -81,18 +81,22 @@ export async function stopRace(id:string) {
 export function animation(duration:number, id:string) {
     const car = document.getElementById(`image-car-${id}`) as HTMLDivElement;
     const flag = document.getElementById(`flag-${id}`) as HTMLDivElement;
-    const endPoint = flag.offsetLeft- 25;
-    const framesCount = duration / 1000;
+
+    const endPoint = flag.offsetLeft - flag.offsetWidth;
+    const framesCount = duration / 1000 * 60;
+    const dx = endPoint / framesCount;
+
     let pos = 0;
+    const max = pos + endPoint;
     const result:Record<string, number> = {};
 
-    result.request = window.setInterval(frame, framesCount);
+    result.request = window.setInterval(frame, 16);
 
     function frame() {
-        if (pos === endPoint) {
+        if (pos > max) {
             clearInterval(result.request);
         } else {
-            pos = pos + 1;
+            pos += dx;
             car.style.transform = `translateX(${pos}px)`;
         }
     }
@@ -107,7 +111,7 @@ export async function raceAllCars() {
     return win;
 }
 
-async function winner (prom:Promise<ResultPromise>[], ind:number[]): Promise<{ cars: { cars: Car; }; time: string; }> {
+async function winner (prom:Promise<ResultPromise>[], ind:number[]): Promise<{ win: Car; time: number; }> {
     const { id, timeRace, success,}:ResultPromise = await Promise.race(prom);
 
     if(!success) {
@@ -119,7 +123,7 @@ async function winner (prom:Promise<ResultPromise>[], ind:number[]): Promise<{ c
 
     const result = {cars: cars.find((car:Car) => (car.id).toString() === id), time: (timeRace / 1000).toFixed(2)};
 
-    return result;
+    return ({win:result.cars, time:+result.time});
 }
 
 export async function stopRaceAllCars() {

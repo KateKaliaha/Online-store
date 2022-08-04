@@ -7,6 +7,7 @@ export function renderAllBlocks() {
             <button class="to-winners">TO WINNERS</button>
         </div>
         <div class="garage-view">${renderPageGarage()}</div>
+        <div class="message" id="message"></div>
         <div class="page-switch-btn-wrapper">
             <button class="prev">PREV</button>
             <button class="next">NEXT</button>
