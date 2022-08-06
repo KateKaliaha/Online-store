@@ -2,10 +2,18 @@ import { cars } from '../model/manageGarage';
 import {Car} from '../views/renderGarage';
 
 interface ResultPromise {
-    id: string; 
-    timeRace: number; 
+    id: string;
+    timeRace: number;
     success: boolean;
 }
+
+export interface WinCar {
+    id: number,
+    wins: string,
+    time: number
+}
+
+export const arrayNamesAndColorsWinners:Record<string, string>[] = [{}, {name:'Tesla', color:'#E6E6FA'}];
 
 const animateRequest:Record<string,number>[] = [];
 
@@ -122,6 +130,7 @@ async function winner (prom:Promise<ResultPromise>[], ind:number[]): Promise<{ w
     }
 
     const result = {cars: cars.find((car:Car) => (car.id).toString() === id), time: (timeRace / 1000).toFixed(2)};
+    arrayNamesAndColorsWinners[result.cars.id] = {name: result.cars.name, color: result.cars.color};
 
     return ({win:result.cars, time:+result.time});
 }
@@ -129,5 +138,16 @@ async function winner (prom:Promise<ResultPromise>[], ind:number[]): Promise<{ w
 export async function stopRaceAllCars() {
     await Promise.all(cars.map( async (car:Car) => await stopRace(car.id.toString())));
 }
+
+// export const getWinners = async (page: number, limit = 10) => {
+//     const res = await fetch(`http://localhost:3000/winners?_page=${page}&_limit=${limit}&_sort=id&_order=asc`);
+
+//     const winnerCars = await res.json();
+
+//     return {winners: await Promise.all(winnerCars.map(async (winner: WinCar) => ({...winner, car: await getCar((winner.id).toString())}))),
+//      countAllWinners: res.headers.get('X-Total-Count')};
+//     // return {winners: await Promise.all(winnerCars.map(async (winner: WinCar) => { await getCar((winner.id).toString());})),
+//     // countAllWinners: res.headers.get('X-Total-Count')};
+// };
 
 

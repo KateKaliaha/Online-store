@@ -1,4 +1,3 @@
-import { Car } from '../views/renderGarage';
 import { page } from '../controllers/catchEvents';
 
 export const getCars = async (page: number, limit = 7) => {
@@ -8,13 +7,13 @@ export const getCars = async (page: number, limit = 7) => {
             countAllCars: res.headers.get('X-Total-Count')};
 };
 
-
 export let {allCars: cars, countAllCars: count} = await getCars(page);
 cars.request = 0;
-export const getCar = async (id:string) => {
-    const res:Car = await (await fetch(`http://localhost:3000/garage/${id}`)).json();
 
-    return res;
+export const getCar = async (id:string) => {
+    const res = await fetch(`http://localhost:3000/garage/${id}`);
+
+    return await res.json();
 };
 
 export async function deleteCar(id:string) {

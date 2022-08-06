@@ -1,7 +1,19 @@
-import {carMarks} from './carArray';
+import {carMarks, carModel} from './carArray';
+
+function getRandomCarMark():string {
+    const carRandomMark = carMarks[Math.floor(Math.random() * carMarks.length)];
+
+    return carRandomMark;
+}
+
+function getRandomCarModel() {
+    const carRandomModel = carModel[Math.floor(Math.random() * carModel.length)];
+
+    return carRandomModel;
+}
 
 function getRandomCarName() {
-    const carRandomName = carMarks[Math.floor(Math.random() * carMarks.length)];
+    const carRandomName = `${getRandomCarMark()} ${getRandomCarModel()}`;
 
     return carRandomName;
 }

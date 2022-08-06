@@ -1,0 +1,37 @@
+.winners-view {
+    display: none;
+}
+
+.number-winners,
+.number-page-winners {
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+.number-winners {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.number-page-winners {
+    font-size: 20px;
+}
+
+.table-winners {
+    color: #ffffff;
+}
+
+thead {
+       font-size: 20px;
+}
+
+th, 
+td {
+    padding: 0 8px 0 8px;
+    font-size: 18px;
+}
+
+.sort-wins,
+.sort-time {
+    cursor: pointer;
+}

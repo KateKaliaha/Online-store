@@ -1,4 +1,6 @@
 import { renderPageGarage } from './renderGarage';
+import { renderViewWinners } from './renderWinnersPage';
+// import { renderViewWinners } from './renderWinnersPage';
 
 export function renderAllBlocks() {
     (document.querySelector('body') as HTMLBodyElement).innerHTML =`
@@ -8,6 +10,9 @@ export function renderAllBlocks() {
         </div>
         <div class="garage-view">${renderPageGarage()}</div>
         <div class="message" id="message"></div>
+        <div class="winners-view">${renderViewWinners()}</div>
+
+
         <div class="page-switch-btn-wrapper">
             <button class="prev">PREV</button>
             <button class="next">NEXT</button>
