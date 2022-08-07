@@ -1,5 +1,5 @@
 import { cars } from '../model/manageGarage';
-import {Car} from '../views/renderGarage';
+import { Car } from '../views/renderGarage';
 
 interface ResultPromise {
     id: string;
@@ -70,7 +70,6 @@ export async function startRace(id:string): Promise<{ id: string; timeRace: numb
     return { id, success, timeRace};
 }
 
-
 export async function stopRace(id:string) {
     const startButton = document.getElementById(`start-btn-${id}`) as HTMLButtonElement;
     const finishButton = document.getElementById(`finish-btn-${id}`) as HTMLButtonElement;
@@ -114,13 +113,14 @@ export function animation(duration:number, id:string) {
 
 export async function raceAllCars() {
     const promises:Promise<ResultPromise>[] = [...cars.map( async (car:Car) => await startRace(car.id.toString()))];
+    console.log(promises);
     const win = await winner(promises, cars.map((car:Car) => car.id));
 
     return win;
 }
 
 async function winner (prom:Promise<ResultPromise>[], ind:number[]): Promise<{ win: Car; time: number; }> {
-    const { id, timeRace, success,}:ResultPromise = await Promise.race(prom);
+    const { id, timeRace, success }:ResultPromise = await Promise.race(prom);
 
     if(!success) {
         const fail:number = ind.findIndex((i:number) => (i).toString() == id);
@@ -138,16 +138,5 @@ async function winner (prom:Promise<ResultPromise>[], ind:number[]): Promise<{ w
 export async function stopRaceAllCars() {
     await Promise.all(cars.map( async (car:Car) => await stopRace(car.id.toString())));
 }
-
-// export const getWinners = async (page: number, limit = 10) => {
-//     const res = await fetch(`http://localhost:3000/winners?_page=${page}&_limit=${limit}&_sort=id&_order=asc`);
-
-//     const winnerCars = await res.json();
-
-//     return {winners: await Promise.all(winnerCars.map(async (winner: WinCar) => ({...winner, car: await getCar((winner.id).toString())}))),
-//      countAllWinners: res.headers.get('X-Total-Count')};
-//     // return {winners: await Promise.all(winnerCars.map(async (winner: WinCar) => { await getCar((winner.id).toString());})),
-//     // countAllWinners: res.headers.get('X-Total-Count')};
-// };
 
 

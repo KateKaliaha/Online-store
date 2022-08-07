@@ -2,7 +2,7 @@ import {renderApp} from '../views/renderApp';
 import {deleteCar, updateGarage, createCar, getCar,  updateCar} from '../model/manageGarage';
 import { generateRandomCars } from '../model/createRandomCar';
 import { raceAllCars, startRace, stopRace, stopRaceAllCars} from '../model/race';
-import { addWinner, updateWinners } from '../model/manageWinners';
+import { addWinner, deleteWinner, updateWinners } from '../model/manageWinners';
 import { renderUpdateWinners } from '../views/renderWinnersPage';
 
 export let page = 1;
@@ -20,6 +20,9 @@ export function listenEvent() {
             await deleteCar(id);
             await updateGarage();
             await renderApp();
+            await deleteWinner(id);
+            await updateWinners();
+            await renderUpdateWinners();
         }
     });
 
@@ -67,6 +70,9 @@ export function listenEvent() {
     document.body.addEventListener('click', async (event) => {
         if ((event.target as HTMLButtonElement).classList.contains('next')) {
             if (viewApp === 'garage') {
+                const message = document.getElementById('message') as HTMLDivElement;
+                message.innerHTML ='';
+                message.style.display = 'none';
                 page = page + 1;
                 await updateGarage();
                 await renderApp();
@@ -81,17 +87,20 @@ export function listenEvent() {
 
         if ((event.target as HTMLButtonElement).classList.contains('prev')) {
             if (viewApp === 'garage') {
-            page = page - 1;
-            await updateGarage();
-            await renderApp();
-        }
+                const message = document.getElementById('message') as HTMLDivElement;
+                message.innerHTML ='';
+                message.style.display = 'none';
+                page = page - 1;
+                await updateGarage();
+                await renderApp();
+            }
 
-        if (viewApp === 'winners') {
-            pageWinners = pageWinners - 1;
-            await updateWinners();
-            await renderUpdateWinners();
+            if (viewApp === 'winners') {
+                pageWinners = pageWinners - 1;
+                await updateWinners();
+                await renderUpdateWinners();
+            }
         }
-    }
     });
 
     document.body.addEventListener('click', async (event) => {
@@ -111,6 +120,11 @@ export function listenEvent() {
     document.body.addEventListener('click', async (event) => {
         if ((event.target as HTMLButtonElement).classList.contains('race')) {
             (event.target as HTMLButtonElement).disabled = true;
+            (document.querySelector('.prev') as HTMLButtonElement).disabled = true;
+            (document.querySelector('.next') as HTMLButtonElement).disabled = true;
+            (document.querySelector('.update')as HTMLButtonElement).disabled = true;
+            (document.querySelector('.create')as HTMLButtonElement).disabled = true;
+            (document.querySelector('.generate-cars')as HTMLButtonElement).disabled = true;
             (document.querySelector('.reset') as HTMLButtonElement).classList.remove('push');
             (document.querySelector('.reset') as HTMLButtonElement).disabled = false;
             const winner = await raceAllCars();
@@ -122,6 +136,11 @@ export function listenEvent() {
             }
 
             await addWinner(winner);
+            await updateGarage();
+
+            (document.querySelector('.update')as HTMLButtonElement).disabled = false;
+            (document.querySelector('.create')as HTMLButtonElement).disabled = false;
+            (document.querySelector('.generate-cars')as HTMLButtonElement).disabled = false;
         }
     });
 
@@ -135,6 +154,11 @@ export function listenEvent() {
             await stopRaceAllCars();
             (document.querySelector('.race') as HTMLButtonElement).disabled = false;
             message.innerHTML = '';
+            await updateGarage();
+
+            (document.querySelector('.update')as HTMLButtonElement).disabled = false;
+            (document.querySelector('.create')as HTMLButtonElement).disabled = false;
+            (document.querySelector('.generate-cars')as HTMLButtonElement).disabled = false;
         }
     });
 
@@ -146,7 +170,6 @@ export function listenEvent() {
             (document.querySelector('.winners-view') as HTMLDivElement).style.display = 'none';
             const message = document.getElementById('message') as HTMLDivElement;
             message.style.display = 'block';
-            console.log(viewApp, page);
         }
     });
 
@@ -168,6 +191,7 @@ export function listenEvent() {
             const sortTime = document.querySelector('.sort-time') as HTMLButtonElement;
             sortTime.innerHTML = 'Best time,sec';
             sortTime.classList.add('ASC');
+
             if(sortWins.classList.contains('ASC')) {
                 sortWins.innerHTML = 'Wins &#8593';
                 sortBy = 'wins';
@@ -190,6 +214,7 @@ export function listenEvent() {
             sortWins.innerHTML = 'Wins';
             sortWins.classList.add('ASC');
             const sortTime = document.querySelector('.sort-time') as HTMLButtonElement;
+
             if(sortTime.classList.contains('ASC')) {
                 sortTime.innerHTML = 'Best time,sec &#8593';
                 sortBy = 'time';

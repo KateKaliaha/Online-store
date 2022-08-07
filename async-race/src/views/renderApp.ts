@@ -1,6 +1,5 @@
 import { renderPageGarage } from './renderGarage';
 import { renderViewWinners } from './renderWinnersPage';
-// import { renderViewWinners } from './renderWinnersPage';
 
 export function renderAllBlocks() {
     (document.querySelector('body') as HTMLBodyElement).innerHTML =`

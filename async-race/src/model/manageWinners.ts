@@ -99,5 +99,16 @@ export async function updateWinners() {
         } else {
             (document.querySelector('.prev') as HTMLButtonElement).disabled = true;
         }
-        console.log(arrayAllWinners, pageWinners);
+}
+
+export async function deleteWinner(id:string) {
+    const res = await fetch(`http://localhost:3000/winners/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+    const data = await res.json();
+
+    return data;
 }
