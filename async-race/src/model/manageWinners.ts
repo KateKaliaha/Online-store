@@ -6,7 +6,7 @@ import { WinCar } from './race';
 interface Winners {
     id: number,
     time: number,
-    wins: string,
+    wins: number,
     car: {
         color: string,
         id: number,
@@ -14,7 +14,7 @@ interface Winners {
     }
 }
 
-export let arrayAllWinners:Winners[] = [{car: {name: 'Tesla', color: '#3232c3', id: 1}, id: 1, time: 2.69, wins: '2'}];
+export let arrayAllWinners:Winners[] = [{car: {name: 'Tesla', color: '#3232c3', id: 1}, id: 1, time: 2.69, wins: 1}];
 export let countWinners:string;
 
 export async function addWinner({ win, time} : { win: Car, time:number}) {
@@ -24,14 +24,14 @@ export async function addWinner({ win, time} : { win: Car, time:number}) {
     if (winnerStatus === errorWinnerStatus) {
         await createWinner ({
             id:(win.id as number),
-            wins:'1',
+            wins:1,
             time:time
         });
     } else {
         const winner:WinCar = await getWinner((win.id as number).toString());
         await updateWinner((win.id as number).toString(), {
             id: winner.id,
-            wins: (+winner.wins + 1).toString(),
+            wins: winner.wins + 1,
             time: time < winner.time ? time : winner.time
         });
     }

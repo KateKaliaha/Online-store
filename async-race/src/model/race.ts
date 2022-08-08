@@ -9,7 +9,7 @@ interface ResultPromise {
 
 export interface WinCar {
     id: number,
-    wins: string,
+    wins: number,
     time: number
 }
 
