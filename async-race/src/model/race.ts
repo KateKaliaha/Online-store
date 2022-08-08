@@ -112,8 +112,7 @@ export function animation(duration:number, id:string) {
 }
 
 export async function raceAllCars() {
-    const promises:Promise<ResultPromise>[] = [...cars.map( async (car:Car) => await startRace(car.id.toString()))];
-    console.log(promises);
+    const promises:Promise<ResultPromise>[] = [...cars.map( async (car:Car) => await startRace((car.id as number).toString()))];
     const win = await winner(promises, cars.map((car:Car) => car.id));
 
     return win;
@@ -129,14 +128,14 @@ async function winner (prom:Promise<ResultPromise>[], ind:number[]): Promise<{ w
         return winner(resProm, resInd);
     }
 
-    const result = {cars: cars.find((car:Car) => (car.id).toString() === id), time: (timeRace / 1000).toFixed(2)};
+    const result = {cars: cars.find((car:Car) => ((car.id) as number).toString() === id), time: (timeRace / 1000).toFixed(2)};
     arrayNamesAndColorsWinners[result.cars.id] = {name: result.cars.name, color: result.cars.color};
 
     return ({win:result.cars, time:+result.time});
 }
 
 export async function stopRaceAllCars() {
-    await Promise.all(cars.map( async (car:Car) => await stopRace(car.id.toString())));
+    await Promise.all(cars.map( async (car:Car) => await stopRace((car.id as number).toString())));
 }
 
 

@@ -1,4 +1,4 @@
-import { page } from '../controllers/catchEvents';
+import { pageGarage } from '../controllers/catchEvents';
 
 export const getCars = async (page: number, limit = 7) => {
     const res = await fetch(`http://localhost:3000/garage?_limit=${limit}&_page=${page}`);
@@ -7,7 +7,7 @@ export const getCars = async (page: number, limit = 7) => {
             countAllCars: res.headers.get('X-Total-Count')};
 };
 
-export let {allCars: cars, countAllCars: count} = await getCars(page);
+export let {allCars: cars, countAllCars: count} = await getCars(pageGarage);
 cars.request = 0;
 
 export const getCar = async (id:string) => {
@@ -29,17 +29,17 @@ export async function deleteCar(id:string) {
 }
 
 export const updateGarage = async () => {
-    const {allCars, countAllCars} = await getCars(page);
+    const {allCars, countAllCars} = await getCars(pageGarage);
     cars = [...allCars];
     count = countAllCars;
 
-    if (page * 7 < Number(count)) {
+    if (pageGarage * 7 < Number(count)) {
         (document.querySelector('.next') as HTMLButtonElement).disabled = false;
     } else {
         (document.querySelector('.next') as HTMLButtonElement).disabled = true;
     }
 
-    if (page > 1) {
+    if (pageGarage > 1) {
         (document.querySelector('.prev') as HTMLButtonElement).disabled = false;
     } else {
         (document.querySelector('.prev') as HTMLButtonElement).disabled = true;

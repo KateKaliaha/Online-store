@@ -1,10 +1,55 @@
 .message {
     display: none;
     position: absolute;
-    top: 25%;
+    top: 10%;
     left: 30%;
     color: #D4A017;
     font-size: 50px;
     font-weight: bold;
     font-style: italic;
+    animation: pulsate 2s linear infinite;
+}
+
+@keyframes pulsate {
+
+    50% {
+        color:#fff;
+        text-shadow:0 -1px rgba(0,0,0,.3),0 0 5px #e5d124,0 0 8px #e5d124;
+    }
+
+}
+
+@media(max-width: 1024px) {
+
+    .message {
+        top: 20%;
+        font-size: 35px;
+    }
+
+}
+
+@media(max-width: 900px) {
+
+    .message {
+        top: 30%;
+    }
+
+}
+
+@media(max-width: 768px) {
+
+    .message {
+        font-size: 25px;
+    }
+
+}
+
+@media(max-width: 768px) {
+
+    .message {
+        top: 35%;
+        left: 25%;
+        font-size: 20px;
+    }
+
 }

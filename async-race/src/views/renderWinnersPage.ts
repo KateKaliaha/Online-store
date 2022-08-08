@@ -36,7 +36,7 @@ export function renderWinners(page:number) {
         ` <tr>
             <th>${page+index+ 1}</th>
             <th>${renderImageCar(winner.car.color, '30')}</th>
-            <th>${winner.car.name}</th>
+            <th class="name-winner">${winner.car.name}</th>
             <th>${winner.wins}</th>
             <th>${winner.time}</th>
         </tr>`

@@ -3,7 +3,6 @@ import { Car } from '../views/renderGarage';
 import { getCar } from './manageGarage';
 import { WinCar } from './race';
 
-
 interface Winners {
     id: number,
     time: number,
@@ -19,17 +18,18 @@ export let arrayAllWinners:Winners[] = [{car: {name: 'Tesla', color: '#3232c3', 
 export let countWinners:string;
 
 export async function addWinner({ win, time} : { win: Car, time:number}) {
-    const winnerStatus = await getWinnerStatus((win.id).toString());
+    const winnerStatus = await getWinnerStatus((win.id as number).toString());
+    const errorWinnerStatus = 404;
 
-    if (winnerStatus === 404) {
+    if (winnerStatus === errorWinnerStatus) {
         await createWinner ({
-            id:(win.id),
+            id:(win.id as number),
             wins:'1',
             time:time
         });
     } else {
-        const winner:WinCar = await getWinner((win.id).toString());
-        await updateWinner((win.id).toString(), {
+        const winner:WinCar = await getWinner((win.id as number).toString());
+        await updateWinner((win.id as number).toString(), {
             id: winner.id,
             wins: (+winner.wins + 1).toString(),
             time: time < winner.time ? time : winner.time
@@ -84,11 +84,11 @@ export const getWinners = async (page: number, sort='id', order='asc'): Promise<
 
 export async function updateWinners() {
         const {winners, countAllWinners} : {winners:Winners[], countAllWinners:string} = await getWinners(pageWinners, sortBy, sortOrder);
-
         arrayAllWinners = winners;
         countWinners = countAllWinners;
+        const limitNumberWinnersOnPage = 10;
 
-        if (+pageWinners * 10 < Number(countWinners)) {
+        if (+pageWinners * limitNumberWinnersOnPage < Number(countWinners)) {
             (document.querySelector('.next') as HTMLButtonElement).disabled = false;
         } else {
             (document.querySelector('.next') as HTMLButtonElement).disabled = true;

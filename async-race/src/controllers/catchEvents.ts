@@ -1,236 +1,262 @@
-import {renderApp} from '../views/renderApp';
-import {deleteCar, updateGarage, createCar, getCar,  updateCar} from '../model/manageGarage';
-import { generateRandomCars } from '../model/createRandomCar';
-import { raceAllCars, startRace, stopRace, stopRaceAllCars} from '../model/race';
+import { renderApp } from '../views/renderApp';
+import { deleteCar, updateGarage, createCar, getCar, updateCar } from '../model/manageGarage';
+import { generateAllRandomCars, generateRandomCars } from '../model/createRandomCar';
+import { raceAllCars, startRace, stopRace, stopRaceAllCars } from '../model/race';
 import { addWinner, deleteWinner, updateWinners } from '../model/manageWinners';
 import { renderUpdateWinners } from '../views/renderWinnersPage';
 
-export let page = 1;
+export let pageGarage = 1;
 export let sortBy = 'id';
 export let sortOrder = 'asc';
 export let chooseCar: Record<string, string> = {};
 let viewApp = 'garage';
-const amountAddCarsToPage = 100;
 export let pageWinners = 1;
 
 export function listenEvent() {
     document.body.addEventListener('click', async (event) => {
         if ((event.target as HTMLButtonElement).classList.contains('remove-btn')) {
             const id = (event.target as HTMLButtonElement).id.split('remove-')[1];
-            await deleteCar(id);
-            await updateGarage();
-            await renderApp();
-            await deleteWinner(id);
-            await updateWinners();
-            await renderUpdateWinners();
+            removeCar(id);
         }
-    });
 
-    document.body.addEventListener('click', async (event) => {
         if ((event.target as HTMLButtonElement).classList.contains('create')) {
-            const inputText = document.querySelector('.create-input-text') as HTMLInputElement;
-            const title = inputText.value;
-            const inputColor = document.querySelector('.create-input-color') as HTMLInputElement;
-            const color = inputColor.value;
-            await createCar({name:title, color});
-            await updateGarage();
-            await renderApp();
-            inputText.value = '';
+            createNewCar(document.querySelector('.create-input-text') as HTMLInputElement, document.querySelector('.create-input-color') as HTMLInputElement);
         }
-    });
 
-    document.body.addEventListener('click', async (event) => {
         if ((event.target as HTMLButtonElement).classList.contains('select-btn')) {
-            chooseCar = await getCar((event.target as HTMLButtonElement).id.split('select-')[1]);
-            const updateText = document.querySelector('.update-input-text') as HTMLInputElement;
-            updateText.value = chooseCar.name;
-            const updateColor = document.querySelector('.update-input-color') as HTMLInputElement;
-            updateColor.value = chooseCar.color;
+            selectCar((event.target as HTMLButtonElement), document.querySelector('.update-input-text') as HTMLInputElement, document.querySelector('.update-input-color') as HTMLInputElement);
         }
-    });
 
-    document.body.addEventListener('click', async (event) => {
         if ((event.target as HTMLButtonElement).classList.contains('update')) {
-            await updateCar(chooseCar.id);
-            await updateGarage();
-            await renderApp();
-            chooseCar = {};
+            updateSelectedCar();
         }
-    });
 
-    document.body.addEventListener('click', async (event) => {
         if ((event.target as HTMLButtonElement).classList.contains('generate-cars')) {
-            const newCars = generateRandomCars(amountAddCarsToPage);
-            await Promise.all(newCars.map( async (car) => await createCar(car)));
-            await updateGarage();
-            await renderApp();
+            generateCars(event.target as HTMLButtonElement);
         }
-    });
 
-    document.body.addEventListener('click', async (event) => {
         if ((event.target as HTMLButtonElement).classList.contains('next')) {
-            if (viewApp === 'garage') {
-                const message = document.getElementById('message') as HTMLDivElement;
-                message.innerHTML ='';
-                message.style.display = 'none';
-                page = page + 1;
-                await updateGarage();
-                await renderApp();
-            }
-        
-            if (viewApp === 'winners') {
-                pageWinners = pageWinners + 1;
-                await updateWinners();
-                await renderUpdateWinners();
-            }
+            switchNextPage();
         }
 
         if ((event.target as HTMLButtonElement).classList.contains('prev')) {
-            if (viewApp === 'garage') {
-                const message = document.getElementById('message') as HTMLDivElement;
-                message.innerHTML ='';
-                message.style.display = 'none';
-                page = page - 1;
-                await updateGarage();
-                await renderApp();
-            }
-
-            if (viewApp === 'winners') {
-                pageWinners = pageWinners - 1;
-                await updateWinners();
-                await renderUpdateWinners();
-            }
+            switchPrevPage();
         }
-    });
 
-    document.body.addEventListener('click', async (event) => {
         if ((event.target as HTMLButtonElement).classList.contains('start-btn')) {
             const id = (event.target as HTMLButtonElement).id.split('start-btn-')[1];
             startRace(id);
         }
-    });
 
-    document.body.addEventListener('click', async (event) => {
         if ((event.target as HTMLButtonElement).classList.contains('finish-btn')) {
             const id = (event.target as HTMLButtonElement).id.split('finish-btn-')[1];
             stopRace(id);
         }
-    });
 
-    document.body.addEventListener('click', async (event) => {
         if ((event.target as HTMLButtonElement).classList.contains('race')) {
-            (event.target as HTMLButtonElement).disabled = true;
-            (document.querySelector('.prev') as HTMLButtonElement).disabled = true;
-            (document.querySelector('.next') as HTMLButtonElement).disabled = true;
-            (document.querySelector('.update')as HTMLButtonElement).disabled = true;
-            (document.querySelector('.create')as HTMLButtonElement).disabled = true;
-            (document.querySelector('.generate-cars')as HTMLButtonElement).disabled = true;
-            (document.querySelector('.reset') as HTMLButtonElement).classList.remove('push');
-            (document.querySelector('.reset') as HTMLButtonElement).disabled = false;
-            const winner = await raceAllCars();
-
-            if (!(document.querySelector('.reset') as HTMLButtonElement).classList.contains('push')) {
-                const message = document.getElementById('message') as HTMLDivElement;
-                message.style.display = 'block';
-                message.innerHTML = `${winner.win.name} went first (time: ${winner.time} sec)`;
-            }
-
-            await addWinner(winner);
-            await updateGarage();
-
-            (document.querySelector('.update')as HTMLButtonElement).disabled = false;
-            (document.querySelector('.create')as HTMLButtonElement).disabled = false;
-            (document.querySelector('.generate-cars')as HTMLButtonElement).disabled = false;
+            clickStartRace( (event.target as HTMLButtonElement), document.getElementById('message') as HTMLDivElement);
         }
-    });
 
-    document.body.addEventListener('click', async (event) => {
         if ((event.target as HTMLButtonElement).classList.contains('reset')) {
-            (event.target as HTMLButtonElement).classList.add('push');
-            (event.target as HTMLButtonElement).disabled = true;
-            const message = document.getElementById('message') as HTMLDivElement;
-            message.innerHTML ='';
-            message.style.display = 'none';
-            await stopRaceAllCars();
-            (document.querySelector('.race') as HTMLButtonElement).disabled = false;
-            message.innerHTML = '';
-            await updateGarage();
-
-            (document.querySelector('.update')as HTMLButtonElement).disabled = false;
-            (document.querySelector('.create')as HTMLButtonElement).disabled = false;
-            (document.querySelector('.generate-cars')as HTMLButtonElement).disabled = false;
+            clickStopRace(event.target as HTMLButtonElement);
         }
-    });
 
-    document.body.addEventListener('click', async (event) => {
         if ((event.target as HTMLButtonElement).classList.contains('to-garage')) {
-            viewApp = 'garage';
-            await updateGarage();
-            (document.querySelector('.garage-view') as HTMLDivElement).style.display = '';
-            (document.querySelector('.winners-view') as HTMLDivElement).style.display = 'none';
-            const message = document.getElementById('message') as HTMLDivElement;
-            message.style.display = 'block';
+            switchPageApp('to-garage');
         }
-    });
 
-    document.body.addEventListener('click', async (event) => {
         if ((event.target as HTMLButtonElement).classList.contains('to-winners')) {
-            viewApp = 'winners';
-            await updateWinners();
-            (document.querySelector('.garage-view') as HTMLDivElement).style.display = 'none';
-            (document.querySelector('.winners-view') as HTMLDivElement).style.display = 'block';
-            const message = document.getElementById('message') as HTMLDivElement;
-            message.style.display = 'none';
-            renderUpdateWinners();
+            switchPageApp('to-winners');
         }
-    });
 
-    document.body.addEventListener('click', async (event) => {
         if ((event.target as HTMLButtonElement).classList.contains('sort-wins')) {
-            const sortWins = document.querySelector('.sort-wins') as HTMLButtonElement;
-            const sortTime = document.querySelector('.sort-time') as HTMLButtonElement;
-            sortTime.innerHTML = 'Best time,sec';
-            sortTime.classList.add('ASC');
-
-            if(sortWins.classList.contains('ASC')) {
-                sortWins.innerHTML = 'Wins &#8593';
-                sortBy = 'wins';
-                sortOrder = 'asc';
-                await updateWinners();
-                await renderUpdateWinners();
-                sortWins.classList.toggle('ASC');
-            } else {
-                sortWins.innerHTML = 'Wins &#8595';
-                sortBy = 'wins';
-                sortOrder = 'desc';
-                await updateWinners();
-                await renderUpdateWinners();
-                sortWins.classList.toggle('ASC');
-            }
+            sort('sort-wins');
         }
 
         if ((event.target as HTMLButtonElement).classList.contains('sort-time')) {
-            const sortWins = document.querySelector('.sort-wins') as HTMLButtonElement;
-            sortWins.innerHTML = 'Wins';
-            sortWins.classList.add('ASC');
-            const sortTime = document.querySelector('.sort-time') as HTMLButtonElement;
-
-            if(sortTime.classList.contains('ASC')) {
-                sortTime.innerHTML = 'Best time,sec &#8593';
-                sortBy = 'time';
-                sortOrder = 'asc';
-                await updateWinners();
-                await renderUpdateWinners();
-                sortTime.classList.toggle('ASC');
-            } else {
-                sortTime.innerHTML = 'Best time,sec &#8595';
-                sortBy = 'time';
-                sortOrder = 'desc';
-                await updateWinners();
-                await renderUpdateWinners();
-                sortTime.classList.toggle('ASC');
-            }
+            sort('sort-time');
         }
     });
 }
 
+async function removeCar(id:string) {
+    await deleteCar(id);
+    await updateGarage();
+    await renderApp();
+    await deleteWinner(id);
+}
+
+async function createNewCar(inputText:HTMLInputElement, inputColor:HTMLInputElement) {
+    clearMessage(document.getElementById('message') as HTMLDivElement);
+    const nameNewCar = inputText.value;
+    const color = inputColor.value;
+    await createCar({name:nameNewCar, color});
+    await updateGarage();
+    await renderApp();
+    inputText.value = '';
+}
+
+async function selectCar(selectButton:HTMLButtonElement, updateText:HTMLInputElement, updateColor:HTMLInputElement) {
+    chooseCar = await getCar(selectButton.id.split('select-')[1]);
+    updateText.value = chooseCar.name;
+    updateColor.value = chooseCar.color;
+}
+
+async function updateSelectedCar() {
+    clearMessage(document.getElementById('message') as HTMLDivElement);
+    await updateCar(chooseCar.id);
+    await updateGarage();
+    await renderApp();
+    chooseCar = {};
+}
+
+async function generateCars(button:HTMLButtonElement) {
+    clearMessage(document.getElementById('message') as HTMLDivElement);
+    button.disabled = true;
+    generateAllRandomCars(generateRandomCars());
+    await updateGarage();
+    await renderApp();
+    button.disabled = false;
+}
+
+async function switchNextPage() {
+    if (viewApp === 'garage') {
+        clearMessage(document.getElementById('message') as HTMLDivElement);
+        pageGarage = pageGarage + 1;
+        await updateGarage();
+        await renderApp();
+    }
+
+    if (viewApp === 'winners') {
+        pageWinners = pageWinners + 1;
+        await updateWinners();
+        await renderUpdateWinners();
+    }
+}
+
+async function switchPrevPage() {
+    if (viewApp === 'garage') {
+        clearMessage(document.getElementById('message') as HTMLDivElement);
+        pageGarage = pageGarage - 1;
+        await updateGarage();
+        await renderApp();
+    }
+
+    if (viewApp === 'winners') {
+        pageWinners = pageWinners - 1;
+        await updateWinners();
+        await renderUpdateWinners();
+    }
+}
+
+function disableButtons(meaning:boolean) {
+    const updateBtn = document.querySelector('.update')as HTMLButtonElement;
+    const createBtn = document.querySelector('.create')as HTMLButtonElement;
+    const generateBtn = document.querySelector('.generate-cars')as HTMLButtonElement;
+
+    if(meaning) {
+        updateBtn.disabled = true;
+        createBtn.disabled = true;
+        generateBtn.disabled = true;
+    } else {
+        updateBtn.disabled = false;
+        createBtn.disabled = false;
+        generateBtn.disabled = false;
+    }
+}
+
+async function clickStartRace(button:HTMLButtonElement, message:HTMLDivElement) {
+    button.disabled = true;
+    const buttonReset = document.querySelector('.reset') as HTMLButtonElement;
+    (document.querySelector('.prev') as HTMLButtonElement).disabled = true;
+    (document.querySelector('.next') as HTMLButtonElement).disabled = true;
+    disableButtons(true);
+    buttonReset.classList.remove('push');
+    buttonReset.disabled = false;
+    const winner = await raceAllCars();
+
+    if (!buttonReset.classList.contains('push')) {
+        message.style.display = 'block';
+        message.innerHTML = `${winner.win.name} went first (time: ${winner.time} sec)`;
+    }
+
+    await addWinner(winner);
+    await updateGarage();
+    disableButtons(false);
+}
+
+async function clickStopRace(button:HTMLButtonElement) {
+    button.classList.add('push');
+    button.disabled = true;
+    clearMessage(document.getElementById('message') as HTMLDivElement);
+    await stopRaceAllCars();
+    (document.querySelector('.race') as HTMLButtonElement).disabled = false;
+    await updateGarage();
+    disableButtons(false);
+}
+
+async function switchPageApp(page:string) {
+    const switchToGarageBtn = document.querySelector('.garage-view') as HTMLDivElement;
+    const switchToWinnerPage = document.querySelector('.winners-view') as HTMLDivElement;
+    const message = document.getElementById('message') as HTMLDivElement;
+
+    if (page === 'to-garage') {
+        viewApp = 'garage';
+        await updateGarage();
+        switchToGarageBtn.style.display = '';
+        switchToWinnerPage.style.display = 'none';
+        message.style.display = 'block';
+        message.style.visibility = 'visible';
+    }
+
+    if (page ==='to-winners') {
+        viewApp = 'winners';
+        await updateWinners();
+        switchToGarageBtn.style.display = 'none';
+        switchToWinnerPage.style.display = 'block';
+        message.style.display = 'none';
+        message.style.visibility = 'hidden';
+        renderUpdateWinners();
+    }
+}
+
+async function sort(typeSort:string) {
+    const sortWins = document.querySelector('.sort-wins') as HTMLButtonElement;
+    const sortTime = document.querySelector('.sort-time') as HTMLButtonElement;
+
+    if (typeSort === 'sort-wins') {
+        sortTime.innerHTML = 'Best time,sec';
+        sortTime.classList.add('ASC');
+
+        if(sortWins.classList.contains('ASC')) {
+            sortByAndOrder('Wins &#8593', 'wins', 'asc', sortWins);
+        } else {
+            sortByAndOrder('Wins &#8595', 'wins', 'desc', sortWins);
+        }
+    }
+
+    if (typeSort === 'sort-time') {
+        sortWins.innerHTML = 'Wins';
+        sortWins.classList.add('ASC');
+
+        if(sortTime.classList.contains('ASC')) {
+            sortByAndOrder('Best time,sec &#8593', 'time', 'asc', sortTime);
+        } else {
+            sortByAndOrder('Best time,sec &#8595', 'time', 'desc', sortTime);
+        }
+    }
+}
+
+async function sortByAndOrder(text:string, typeSortBy:string, typeSortOrder:string, button:HTMLButtonElement) {
+    button.innerHTML = text;
+    sortBy = typeSortBy;
+    sortOrder = typeSortOrder;
+    await updateWinners();
+    await renderUpdateWinners();
+    button.classList.toggle('ASC');
+}
+
+function clearMessage(message:HTMLDivElement) {
+    message.style.display = 'none';
+    message.innerHTML = '';
+}

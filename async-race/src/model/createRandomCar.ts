@@ -1,4 +1,8 @@
 import {carMarks, carModel} from './carArray';
+import { Car } from '../views/renderGarage';
+import { createCar } from './manageGarage';
+
+
 
 function getRandomCarMark():string {
     const carRandomMark = carMarks[Math.floor(Math.random() * carMarks.length)];
@@ -25,9 +29,14 @@ function getRandomCarColor() {
     return carRandomColor;
 }
 
-export function generateRandomCars(amountAddCars:number) {
-    const arrayAddedCars = new Array(amountAddCars).fill(0).map(() => ({name:getRandomCarName(), color:getRandomCarColor()}));
+export function generateRandomCars(): Car[] {
+    const amountAddCarsToPage = 100;
+    const arrayAddedCars = new Array(amountAddCarsToPage).fill(0).map(() => ({name:getRandomCarName(), color:getRandomCarColor()}));
     return arrayAddedCars;
 }
 
+export function generateAllRandomCars(arrayAddedCars:Array<Car>) {
+    arrayAddedCars.map(async(car:Car) => await createCar(car));
+    return arrayAddedCars;
+}
 

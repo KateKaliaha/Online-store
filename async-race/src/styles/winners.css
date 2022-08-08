@@ -14,7 +14,7 @@
 }
 
 .number-page-winners {
-    font-size: 20px;
+    font-size: 30px;
 }
 
 .table-winners {
@@ -22,16 +22,33 @@
 }
 
 thead {
-       font-size: 20px;
+    font-size: 30px;
 }
 
-th, 
+th,
 td {
-    padding: 0 8px 0 8px;
-    font-size: 18px;
+    padding: 8px;
+    font-size: 25px;
 }
 
+.name-winner {
+    color: #c69bf7;
+}
 .sort-wins,
 .sort-time {
     cursor: pointer;
+}
+
+@media (max-width: 800px) {
+
+    thead {
+        font-size: 20px;
+    }
+
+    th,
+    td {
+        padding: 5px;
+        font-size: 18px;
+    }
+
 }
