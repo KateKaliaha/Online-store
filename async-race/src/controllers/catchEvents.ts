@@ -178,9 +178,9 @@ async function clickStartRace(button:HTMLButtonElement, message:HTMLDivElement) 
     if (!buttonReset.classList.contains('push')) {
         message.style.display = 'block';
         message.innerHTML = `${winner.win.name} went first (time: ${winner.time} sec)`;
+        await addWinner(winner);
     }
 
-    await addWinner(winner);
     await updateGarage();
     disableButtons(false);
 }
