@@ -3,6 +3,7 @@
     position: absolute;
     top: 10%;
     left: 30%;
+    transform: translate(-10%, -30%);
     color: #D4A017;
     font-size: 50px;
     font-weight: bold;
@@ -19,27 +20,25 @@
 
 }
 
-@media(max-width: 1024px) {
+@media(max-width: 1200px) {
 
     .message {
-        top: 20%;
         font-size: 35px;
+        top: 15%;
+        left: 45%;
+        transform: translate(-15%, -45%);
     }
 
 }
 
-@media(max-width: 900px) {
 
-    .message {
-        top: 30%;
-    }
-
-}
-
-@media(max-width: 768px) {
+@media(max-width: 810px) {
 
     .message {
         font-size: 25px;
+        top: 15%;
+        left: 50%;
+        transform: translate(-15%, -50%);
     }
 
 }
@@ -47,9 +46,10 @@
 @media(max-width: 768px) {
 
     .message {
-        top: 35%;
-        left: 25%;
-        font-size: 20px;
+        top: 20%;
+        left: 45%;
+        transform: translate(-20%, -45%);
+        font-size: 18px;
     }
 
 }
