@@ -1,3 +1,3 @@
-- [a link to YouTube video] (https://youtu.be/TLGwZoJd8gU)
-- [a link to Reveal presentation's deploy] (https://katekaliaha.github.io/presentation/)
-- [a link to the transcript of presentation] (https://docs.google.com/document/d/1gdA2McxnJIPgDn93OlDpGtKLba0fD26r43RB8-lVDNA/edit?usp=sharing)
+- [a link to YouTube video](https://youtu.be/TLGwZoJd8gU)
+- [a link to Reveal presentation's deploy](https://katekaliaha.github.io/presentation/)
+- [a link to the transcript of presentation](https://docs.google.com/document/d/1gdA2McxnJIPgDn93OlDpGtKLba0fD26r43RB8-lVDNA/edit?usp=sharing)
