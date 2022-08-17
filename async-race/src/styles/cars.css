@@ -1,0 +1,90 @@
+.car {
+    width: 100wv;
+    height: 75px;
+    border-bottom: 3px dotted #A4E5E1;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+li {
+    list-style-type: none;
+}
+
+.btn-change-car {
+    color: #c69bf7;
+    width: 300px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.btn-move-car {
+    display: flex;
+    align-items: flex-start;
+    gap: 3px;
+}
+
+.start-btn,
+.finish-btn {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    background: none;
+    border: 1px solid #A4E5E1;
+    color: #A4E5E1;
+}
+
+.active {
+    background: none;
+    border: 1px solid #A4E5E1;
+    color: #A4E5E1;
+}
+
+.select-btn,
+.remove-btn {
+    border: none;
+    cursor: pointer;
+    border-radius: 8%;
+    background-color: #babdbd;
+}
+
+.count-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.number-car,
+.number-page {
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+.number-car {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.number-page {
+    font-size: 20px;
+}
+
+.flag {
+    width: 30px;
+    height: 45px;
+    position: absolute;
+    left: 87%;
+    z-index: 5;
+}
+
+@media(max-width: 600px) {
+
+    .flag {
+        left: 85%;
+    }
+
+}

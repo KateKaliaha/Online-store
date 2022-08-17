@@ -1,0 +1,108 @@
+@import './styles/cars.css';
+@import './styles/message.css';
+@import './styles/winners.css';
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100vh;
+    margin: 0;
+}
+
+body {
+    background-color: black;
+    min-height: 100vh;
+
+}
+
+.garage-view {
+    width: 100wv;
+}
+
+.page-btn-wrapper {
+    display: flex;
+    width: 200px;
+    justify-content: space-between;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.create-block-wrapper,
+.update-block-wrapper,
+.btn-active-wrapper {
+    display: flex;
+    width: 270px;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.btn-active-wrapper {
+    margin-bottom: 20px;
+}
+
+.to-garage,
+.to-winners {
+    border: none;
+    cursor: pointer;
+    border-radius: 10%;
+    background-color: #c7ecea;
+    height: 25px;
+}
+
+.race,
+.reset,
+.prev,
+.next {
+    padding: 0;
+    border: none;
+    width: 60px;
+    cursor: pointer;
+    border-radius: 8%;
+    background-color: #A4E5E1;
+    height: 20px;
+}
+
+.create,
+.update,
+.generate-cars {
+    border: none;
+    cursor: pointer;
+    border-radius: 8%;
+    background-color: #babdbd;
+}
+
+.generate-cars {
+    height: 20px;
+}
+
+body button:active {
+transform: scale(0.9);
+transition: all 0.3s ease;
+}
+
+.create-input-color,
+.update-input-color {
+    padding: 0;
+}
+
+.page-switch-btn-wrapper {
+    display: flex;
+    width: 130px;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+button:disabled {
+    background: none;
+    border: 1px solid #35393a;
+    color: #35393a;
+    cursor: default;
+}
+
+button:active:disabled {
+    transform: none;
+    transition: none;
+}

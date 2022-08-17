@@ -1,0 +1,54 @@
+.winners-view {
+    display: none;
+}
+
+.number-winners,
+.number-page-winners {
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+.number-winners {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.number-page-winners {
+    font-size: 30px;
+}
+
+.table-winners {
+    color: #ffffff;
+}
+
+thead {
+    font-size: 30px;
+}
+
+th,
+td {
+    padding: 8px;
+    font-size: 25px;
+}
+
+.name-winner {
+    color: #c69bf7;
+}
+.sort-wins,
+.sort-time {
+    cursor: pointer;
+}
+
+@media (max-width: 800px) {
+
+    thead {
+        font-size: 20px;
+    }
+
+    th,
+    td {
+        padding: 5px;
+        font-size: 18px;
+    }
+
+}

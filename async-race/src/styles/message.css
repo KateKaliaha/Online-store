@@ -1,0 +1,55 @@
+.message {
+    display: none;
+    position: absolute;
+    top: 10%;
+    left: 30%;
+    transform: translate(-10%, -30%);
+    color: #D4A017;
+    font-size: 50px;
+    font-weight: bold;
+    font-style: italic;
+    animation: pulsate 2s linear infinite;
+}
+
+@keyframes pulsate {
+
+    50% {
+        color:#fff;
+        text-shadow:0 -1px rgba(0,0,0,.3),0 0 5px #e5d124,0 0 8px #e5d124;
+    }
+
+}
+
+@media(max-width: 1200px) {
+
+    .message {
+        font-size: 35px;
+        top: 15%;
+        left: 45%;
+        transform: translate(-15%, -45%);
+    }
+
+}
+
+
+@media(max-width: 810px) {
+
+    .message {
+        font-size: 25px;
+        top: 15%;
+        left: 50%;
+        transform: translate(-15%, -50%);
+    }
+
+}
+
+@media(max-width: 768px) {
+
+    .message {
+        top: 20%;
+        left: 45%;
+        transform: translate(-20%, -45%);
+        font-size: 18px;
+    }
+
+}
