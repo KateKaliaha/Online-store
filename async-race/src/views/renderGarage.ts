@@ -1,42 +1,35 @@
-import { cars, count} from '../model/manageGarage';
+import { Car, cars, count } from '../model/manageGarage';
 import { pageGarage } from '../controllers/catchEvents';
 
-export interface Car {
-    color: string,
-    id?: number,
-    name: string,
-    request?: number
-}
-
-function renderViewGarage () {
-    const numberCarAndPagesInGarage = `<div class="number-car">Garage (${count})</div>
+function renderViewGarage(): string {
+  const numberCarAndPagesInGarage = `<div class="number-car">Garage (${count})</div>
                                       <div class="number-page">Page #${pageGarage}</div>
                                       <div class="cars-wrapper">
                                           ${cars.map((car:Car) => `<li>${renderCar(car)}</li>`).join('')}
                                       </div>`;
 
-    return numberCarAndPagesInGarage;
+  return numberCarAndPagesInGarage;
 }
 
-function renderCar({id, name, color}:Car) {
-        const fragment = `<div class="car" id="car-${id}">
-                            <div class="btn-change-car">
-                                <button class="select-btn" id="select-${id}">SELECT</button>
-                                <button class="remove-btn" id="remove-${id}">REMOVE</button>
+function renderCar({ id, name, color }: Car): string {
+  const fragment = `<div class="car" id="car-${id}">
+                        <div class="btn-change-car">
+                            <button class="select-btn" id="select-${id}">SELECT</button>
+                            <button class="remove-btn" id="remove-${id}">REMOVE</button>
                             ${name}</div>
-                            <div class="btn-move-car">
-                                <button class="start-btn active" id="start-btn-${id}">A</button>
-                                <button class="finish-btn" id="finish-btn-${id}" disabled>B</button>
-                                <div class="image-car" id="image-car-${id}">${renderImageCar(color, '60')}</div>
-                                <img class="flag" id="flag-${id}"src="./assets/flag.png" alt="Image flag for finish car"></img>
-                            </div>
-                        </div>`;
+                        <div class="btn-move-car">
+                            <button class="start-btn active" id="start-btn-${id}">A</button>
+                            <button class="finish-btn" id="finish-btn-${id}" disabled>B</button>
+                            <div class="image-car" id="image-car-${id}">${renderImageCar(color, '60')}</div>
+                            <img class="flag" id="flag-${id}"src="./assets/flag.png" alt="Image flag for finish car"></img>
+                        </div>
+                    </div>`;
 
-    return fragment;
+  return fragment;
 }
 
-export function renderImageCar(color:string, width:string) {
-    const svg = `<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+export function renderImageCar(color: string, width: string): string {
+  const svg = `<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                 width="${width}px" viewBox="0 0 79.536 79.536" style="enable-background:new 0 0 79.536 79.536;"
                 xml:space="preserve">
                 <path style="fill:${color};" d="M15.532,56.706c-3.977,0-7.213-3.242-7.213-7.197c0-3.998,3.236-7.224,7.213-7.224
@@ -51,11 +44,11 @@ export function renderImageCar(color:string, width:string) {
                 c4.898,0,8.875,3.977,8.875,8.885h6.524v-5.396H78.138z M35.589,34.191H21.751c1.872-5.831,5.339-9.994,6.801-9.994
                 c1.841,0,7.037,0,7.037,0V34.191z M38.168,34.191v-9.994c0,0,7.141,0,8.974,0c1.854,0,5.893,8.461,7.032,10.625L38.168,34.191z"/>`;
 
-    return svg;
+  return svg;
 }
 
-export function renderPageGarage() {
-    const garagePage = `<div class="create-block-wrapper">
+export function renderPageGarage(): string {
+  const garagePage = `<div class="create-block-wrapper">
                             <input class="create-input-text" type=text></input>
                             <input class="create-input-color" type=color value="#7A45BA"></input>
                             <button class="create">CREATE</button>
@@ -72,5 +65,5 @@ export function renderPageGarage() {
                         </div>
                         <div class="garage-wrapper">${renderViewGarage()}</div>`;
 
-    return garagePage;
+  return garagePage;
 }

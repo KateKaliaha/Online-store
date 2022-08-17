@@ -16,7 +16,9 @@
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
-    "eslint": "^8.20.0",
+    "eslint": "^8.22.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-webpack-plugin": "^3.2.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
@@ -28,11 +30,7 @@
     "webpack-dev-server": "^4.9.3"
   },
   "dependencies": {
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "gh-pages": "^4.0.0",
-    "prettier": "^2.7.1",
-    "promise-any-polyfill": "^1.0.1"
+    "gh-pages": "^4.0.0"
   },
   "description": ""
 }

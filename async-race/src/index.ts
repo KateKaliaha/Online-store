@@ -8,10 +8,3 @@ renderAllBlocks();
 await updateGarage();
 
 listenEvent();
-
-
-
-
-
-
-
