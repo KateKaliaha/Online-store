@@ -1,0 +1,130 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+@import './styles/filters.css';
+@import './styles/sliders.css';
+@import './styles/goods.css';
+
+* {
+  box-sizing: border-box;
+}
+html {
+  height: 100%;
+}
+body {
+  max-width: 1920px;
+  font-family: 'Comfortaa', cursive;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1 1 auto;
+}
+h3 {
+  margin: 10px 0;
+}
+.header {
+
+  background: rgb(224,174,238);
+  background: radial-gradient(circle, rgba(224,174,238,1) 0%, rgba(148,154,233,1) 100%);
+}
+.basket {
+  position: relative;
+}
+
+.wrapper {
+  display: flex;
+  padding: 10px 20px;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header-logo {
+  width: 90px;
+  border-radius: 50px;
+  /* height: 100px; */
+}
+
+.header-title {
+  font-size: 45px;
+  margin-left: 30px;
+  font-family: 'Courgette', cursive;
+
+}
+
+.basket {
+  margin-left: auto;
+  width: 40px;
+}
+.header-basket {
+  width: 40px;
+}
+
+.main-container.wrapper {
+  flex-direction: column;
+  align-items: flex-start;
+}
+.content-wrapper {
+  display: flex;
+}
+
+.footer {
+  background: rgb(224,174,238);
+  background: radial-gradient(circle, rgba(224,174,238,1) 0%, rgba(148,154,233,1) 100%);
+  flex: 0 0 auto;
+}
+
+.footer-container {
+  justify-content: space-between;
+}
+
+.footer-year {
+font-size: 20px;
+text-align: center;
+font-weight: bold;
+}
+
+.github-link {
+display: inline-block;
+width: 30px;
+height: 30px;
+background-size: contain;
+background-repeat: no-repeat;
+border-radius: 50%;
+}
+
+.rss-logo {
+  display: inline-block;
+  width: 80px;
+}
+
+.github-link {
+  width: 50px;
+  display: inline-block;
+}
+
+.footer-img {
+  display: inline-block;
+  width: 80px;
+}
+
+.img-github {
+  width: 50px;
+  border-radius: 50px;
+}
+
+.img-rss {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(21deg) brightness(97%) contrast(103%);
+}
+
+.rss-logo:hover,
+.github-link:hover {
+  filter: invert(15%) sepia(17%) saturate(7225%) hue-rotate(268deg) brightness(93%) contrast(104%);;
+transform: scale(1.1);
+transition: 0.3s;
+}
+
+
